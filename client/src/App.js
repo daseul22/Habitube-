@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom'
-
+import Mypage from '../src/pages/Mypage'
 
 
 class App extends Component{
@@ -10,10 +10,7 @@ class App extends Component{
   render(){
     return(
       <div>
-        <Route/>
-        <Switch>
-          <Route/>
-        </Switch>
+        <Mypage/>
       </div>
     )
   }
