@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom'
-import logo from './logo.svg';
+
 
 
 class App extends Component{
@@ -10,7 +10,10 @@ class App extends Component{
   render(){
     return(
       <div>
-        Hello world
+        <Route/>
+        <Switch>
+          <Route/>
+        </Switch>
       </div>
     )
   }
