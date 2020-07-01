@@ -1,18 +1,19 @@
-import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom'
-import Mypage from '../src/pages/Mypage'
+import React, { Component } from 'react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import Login from './pages/Login';
+// import { Login } from './pages';
 
-
-class App extends Component{
-  constructor(props){
-    super(props);
-  }
-  render(){
-    return(
+class App extends Component {
+  render() {
+    return (
       <div>
-        <Mypage/>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/login" component={Login} />
+          </Switch>
+        </BrowserRouter>
       </div>
-    )
+    );
   }
 }
 
