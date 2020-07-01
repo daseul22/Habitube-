@@ -1,4 +1,4 @@
-const { todobox } = require('../../models');
+const { todoboxes } = require('../../models');
 
 module.exports = {
   post: (req, res) => {},
