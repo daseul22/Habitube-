@@ -24,6 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   );
-  users.associate = function (models) {};
+  users.associate = function (models) {
+    users.hasMany(models.todobox, { foreginKey: 'usersId' });
+  };
   return users;
 };

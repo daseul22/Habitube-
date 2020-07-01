@@ -3,7 +3,7 @@
 const crypto = require('crypto');
 
 module.exports = (sequelize, DataTypes) => {
-  const todobox = sequelize.define(
+  const todoboxes = sequelize.define(
     'todobox',
     {
       memoTitle: DataTypes.STRING,
@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
 
-  todobox.associate = function (models) {};
-  return todobox;
+  todoboxes.associate = function (models) {
+    todoboxes.belongsTo(models.users, { foreignKey: 'usersId' });
+  };
+  return todoboxes;
 };
