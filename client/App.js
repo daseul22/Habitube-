@@ -6,3 +6,5 @@ function dfs(arf) {
   }
 }
 dfs(123);
+
+let array = [];
