@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       hooks: {
-        afterValidate: (data, options) => {
+        beforeCreate: (data, options) => {
           var shasum = crypto
             .createHash('sha1')
             .update(data.password)
