@@ -15,11 +15,11 @@ class Mypage extends Component{
     memoContent: '',
     youtubeInfo: {},
     isComplete: false,
-    date: ''
+    date: '',
   };
 
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <h1>Mypage</h1>
           <button onClick={e=>{
@@ -33,8 +33,8 @@ class Mypage extends Component{
         
         <TodoBoxContainer info={this.state}/>
       </div>
-    )
+    );
   }
-}  
+}
 
 export default withRouter(Mypage) 
