@@ -8,15 +8,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route path="/mypage" component={Mypage} />
-          </Switch>
-        </BrowserRouter>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route path="/mypage" component={Mypage} />
+        </Switch>
       </div>
     );
   }
 }
 
 export default App;
+
+// app 수정 , 실제로 주소를 바꾸는 방법이 많음, route 분기만 갈라놓은 것 , Link , redireciton, history 통일을 해줘야 함.
