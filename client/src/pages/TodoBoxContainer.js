@@ -2,13 +2,35 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import TodoBox from './TodoBox'
 
+import {Badge, Row} from 'reactstrap'
+import '../etc/App.css';
+
+
 class TodoBoxContainer extends Component{
-  state = {};
+  state = {
+    showListComponent: false
+  };
+
   render(){
-    const {info} = this.props;
+    const { boxes, userinfo, calendar } = this.props;
+
     return(
+      // 날 => 월로 환산하는데, 이번달 다음달을 어떻게 구분하지?
+      // 무한 스크롤링, 날짜 이용해서 구획 주기 방법 고안
+      
       <div>
-        <TodoBox info={info}/>
+        <h1><Badge color="secondary">7월</Badge></h1>
+        <Row>
+          {/* {calendar.map(box => {
+            <TodoBox date={box}/>
+          })} */}
+          <TodoBox  
+          className="todo-box" userinfo={userinfo} boxes={boxes}/>
+          <TodoBox 
+          className="todo-box" userinfo={userinfo} boxes={boxes}/>
+          <TodoBox 
+          className="todo-box" userinfo={userinfo} boxes={boxes}/>
+        </Row>
       </div>
     )
   }

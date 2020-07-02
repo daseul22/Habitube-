@@ -10,17 +10,31 @@ class App extends Component {
     isLogin: false,
     userinfo: {
       username: '',
-      email: ''
-    }
+      email: '',
+      id: ''
+    },
+    calendar: []
   }
+
+  handleId = value =>{
+    this.setState({userinfo: value})
+  }
+  getCalendar = value =>{
+    this.setState({calendar: value})
+  }
+  
+
   render() {
-    const { isLogin, userinfo } = this.state
+    const { isLogin, userinfo, calendar } = this.state
+    const { handleId, getCalendar } =this
     return (
       <div>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route path="/achievementgoal" render={() => <AchievementGoal/> }/>
-          <Route path="/mypage" component={Mypage} />
+          <Route exact path="/login" render={()=><Login handleId={handleId}/> } />
+          <Route path="/achievementgoal" 
+            render={() => <AchievementGoal getCalendar={getCalendar}/> }/>
+          <Route path="/mypage" render={()=> 
+            <Mypage userinfo={userinfo} calendar={calendar}/>} />
           <Route path="/" render={() => {
             if(isLogin){
               return <Redirect to="/mypage" />
