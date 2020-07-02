@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom'
-import Mypage from '../src/pages/Mypage'
-
+import {Route, Switch, Redirect} from 'react-router-dom'
+import Mypage  from './pages/Mypage'
+import AchievementGoal from './pages/AchievementGoal'
 
 class App extends Component{
   constructor(props){
@@ -10,7 +10,14 @@ class App extends Component{
   render(){
     return(
       <div>
-        <Mypage/>
+        <Switch>
+          <Route path="/achievementgoal" render={() => <AchievementGoal/> }/>
+          <Route path="/mypage" render={() => <Mypage/> }/>
+          <Route path="/" render={() => {
+            return <Redirect to="/mypage" />
+          } }
+          />
+        </Switch>
       </div>
     )
   }
