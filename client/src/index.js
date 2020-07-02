@@ -6,12 +6,15 @@ import store from './store';
 // reducers
 import modules from './modules';
 import App from './App';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
-// import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );
