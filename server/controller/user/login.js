@@ -1,9 +1,15 @@
 const { users } = require('../../models');
-//const crypto = require('crypto');
+const crypto = require('crypto');
 module.exports = {
   post: (req, res) => {
     let { email, password } = req.body;
     var sess = req.session;
+    var shasum = crypto
+            .createHash('sha1')
+            .update(password)
+            .digest('hex');
+
+          password = shasum;
 
     users
     .findOne({
@@ -20,7 +26,11 @@ module.exports = {
       } else {
         sess.userid = data.id;
         res.status(200).json({
-          id: data.id,
+          userInfo:{
+            username: data.username,
+            email: data.email,
+            id: data.id
+          }
         });
       }
     })
