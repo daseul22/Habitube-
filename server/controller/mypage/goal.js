@@ -1,4 +1,4 @@
-const { todoboxes } = require('../../models');
+const { todobox } = require('../../models');
 const { users } = require('../../models');
 function dateFormat(year, month, date, day) {
   //['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -26,14 +26,14 @@ function calendar(start, weekly, end) {
     startDate.setDate(getDate + start + i);
     startDay = startDate.getDay();
     if (weekly.includes(startDay)) {
-      result.push(
-        dateFormat(
+      result.push({
+        date: dateFormat(
           startDate.getFullYear(),
           startDate.getMonth() + 1,
           startDate.getDate(),
           startDay,
         ),
-      );
+      });
     }
   }
   return result;
@@ -56,8 +56,19 @@ module.exports = {
         res.status(404).send("Dont't find userID");
       });
 
-    let calendarArr = calendar(stratDate, weekly, deadLine);
-    res.send(arr);
+    let calendarArr = calendar(startDate, weekly, deadLine);
+    for (let i = 0; i < calendarArr.length; i++) {
+      calendarArr[i].usersId = id;
+    }
+    todobox.bulkCreate(calendarArr).catch((err) => {
+      res.status(404).send({
+        message: 'goal error',
+      });
+    });
+    for (let i = 0; i < calendarArr.length; i++) {
+      delete calendarArr[i].usersId;
+    }
+    res.status(200).send(calendarArr);
   },
 };
 
