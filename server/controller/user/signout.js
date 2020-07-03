@@ -4,16 +4,15 @@ module.exports = {
     const sess = req.session;
 
     if (sess.userid) {
-  
-      req.session.destroy(err => {
+      sess.destroy((err) => {
         if (err) {
           console.log(err);
         } else {
-          res.redirect('/');//기본적으로 302코드
+          res.redirect('/'); //기본적으로 302코드
         }
       });
     } else {
-      res.redirect('/');
+      res.status(404).send('Don`t find session ID');
     }
   },
 };
