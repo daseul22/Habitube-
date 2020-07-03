@@ -20,10 +20,13 @@ class Mypage extends Component{
   componentDidMount(){
     
   }
-
+  getTodoBox = value => {
+    this.setState({boxes: value})
+  }
   render() {
     const { userinfo, calendar } = this.props
     const { boxes } = this.state
+    const { getTodoBox } = this
     return (
       <Container>
         <Nav/>
@@ -32,13 +35,15 @@ class Mypage extends Component{
             axios.post('http://localhost:3000/mypage',{id: userinfo.id})
             .then(result => {
               console.log(result);
-              this.setState({boxes: result})
+              result.length ? this.setState({boxes: result}) : this.props.history.push('/achievementgoal');
+              
             }).catch(err=>{
               this.props.history.push('/achievementgoal')
             })
           }}>정보 불러오기 </button>
         
-        <TodoBoxContainer calendar={calendar} boxes={boxes} userinfo={userinfo}/>
+        <TodoBoxContainer calendar={calendar} boxes={boxes} userinfo={userinfo}
+        getTodoBox={getTodoBox}/>
         
       </Container>
     );

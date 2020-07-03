@@ -37,7 +37,7 @@ class App extends Component {
           />
           <Route
             path="/achievementgoal"
-            render={() => <AchievementGoal getCalendar={getCalendar} />}
+            render={() => <AchievementGoal getCalendar={getCalendar} userinfo={userinfo} />}
           />
           <Route
             path="/mypage"
