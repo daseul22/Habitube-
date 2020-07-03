@@ -26,6 +26,10 @@ app.use(
 );
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.status(200).send('Success');
+});
+
 app.use('/', userRouter);
 app.use('/mypage', mypageRouter);
 
