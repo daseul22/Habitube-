@@ -1,7 +1,7 @@
 module.exports = {
   root: require('./root'),
   goal: require('./goal'),
-  todobox: require('./todobox'),
+  getvideolist: require('./getvideolist'),
   selectvideo: require('./selectvideo'),
   todaycomplete: require('./todaycomplete'),
 };

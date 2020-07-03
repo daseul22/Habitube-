@@ -9,8 +9,8 @@ router.post('/', mypageController.root.post);
 // * POST /mypage/goal
 router.post('/goal', mypageController.goal.post);
 
-// * POST /mypage/todobox
-router.post('/todobox', mypageController.todobox.post);
+// * POST /mypage/getvideolist
+router.post('/getvideolist', mypageController.getvideolist.post);
 
 // * POST /mypage/selectvideo
 router.post('/selectvideo', mypageController.selectvideo.post);
