@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import Login from './pages/Login';
 import Mypage from './pages/Mypage';
-import AchievementGoal from './pages/AchievementGoal'
+import AchievementGoal from './pages/AchievementGoal';
+import Signup from './pages/Signup';
 // import { Login } from './pages';
 
 class App extends Component {
@@ -11,36 +12,46 @@ class App extends Component {
     userinfo: {
       username: '',
       email: '',
-      id: ''
+      id: '',
     },
-    calendar: []
-  }
+    calendar: [],
+  };
 
-  handleId = value =>{
-    this.setState({userinfo: value})
-  }
-  getCalendar = value =>{
-    this.setState({calendar: value})
-  }
-  
+  handleId = value => {
+    this.setState({ userinfo: value });
+  };
+  getCalendar = value => {
+    this.setState({ calendar: value });
+  };
 
   render() {
-    const { isLogin, userinfo, calendar } = this.state
-    const { handleId, getCalendar } =this
+    const { isLogin, userinfo, calendar } = this.state;
+    const { handleId, getCalendar } = this;
     return (
       <div>
         <Switch>
-          <Route exact path="/login" render={()=><Login handleId={handleId}/> } />
-          <Route path="/achievementgoal" 
-            render={() => <AchievementGoal getCalendar={getCalendar}/> }/>
-          <Route path="/mypage" render={()=> 
-            <Mypage userinfo={userinfo} calendar={calendar}/>} />
-          <Route path="/" render={() => {
-            if(isLogin){
-              return <Redirect to="/mypage" />
-            }
-            return <Redirect to="/login" />
-          }}
+          <Route
+            exact
+            path="/login"
+            render={() => <Login handleId={handleId} />}
+          />
+          <Route
+            path="/achievementgoal"
+            render={() => <AchievementGoal getCalendar={getCalendar} />}
+          />
+          <Route
+            path="/mypage"
+            render={() => <Mypage userinfo={userinfo} calendar={calendar} />}
+          />
+          <Route path="/signup" render={() => <Signup />} />
+          <Route
+            path="/"
+            render={() => {
+              if (isLogin) {
+                return <Redirect to="/mypage" />;
+              }
+              return <Redirect to="/login" />;
+            }}
           />
         </Switch>
       </div>
@@ -51,4 +62,3 @@ class App extends Component {
 export default App;
 
 // app 수정 , 실제로 주소를 바꾸는 방법이 많음, route 분기만 갈라놓은 것 , Link , redireciton, history 통일을 해줘야 함.
-
