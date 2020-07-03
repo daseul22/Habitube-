@@ -137,7 +137,7 @@ class AchievementGoal extends Component {
         </p>
         <Button color="primary" onClick={() => {
           axios.post('http://localhost:3000/mypage/goal', 
-          {id: userinfo.id , startDate: startDay, weekly: selectedDay, keyword: keyword, deadLine: `${term*30}`},
+          {id: userinfo.id , startDate: +startDay, weekly: selectedDay, keyword: keyword, deadLine: term*30},
           {withCredentials:true})
           .then(result => {
             console.log(result)

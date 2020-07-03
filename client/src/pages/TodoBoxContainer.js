@@ -4,7 +4,7 @@ import TodoBox from './TodoBox'
 
 import {Badge, Row} from 'reactstrap'
 import '../etc/App.css';
-
+let arr = [1,2,3,4]
 
 class TodoBoxContainer extends Component{
   state = {
@@ -21,9 +21,10 @@ class TodoBoxContainer extends Component{
       <div>
         <h1><Badge color="secondary">7월</Badge></h1>
         <Row>
-          {/* {calendar.map(box => {
-            <TodoBox date={box}/>
-          })} */}
+          {arr.map((box,i )=> {
+            return <TodoBox  
+            className="todo-box" key={i} userinfo={userinfo} boxes={boxes}/>
+          })}
           <TodoBox  
           className="todo-box" userinfo={userinfo} boxes={boxes}/>
           <TodoBox 
