@@ -21,7 +21,7 @@ class TodoBox extends Component{
     this.setState({isShowContent: !this.state.isShowContent})
   }
   render(){
-    const { userinfo } = this.props
+    const { userinfo , getTodoBox } = this.props
     const { handleShow } = this
     const { isShowContent } =this.state
     // boxes 정보가 없으면 div 숨기기
@@ -46,7 +46,8 @@ class TodoBox extends Component{
           </div>
           
         </Card>
-        {isShowContent ? <TodoBoxContent handleShow={handleShow} id={userinfo.id}/> : null} 
+        {isShowContent ? <TodoBoxContent handleShow={handleShow} id={userinfo.id}
+        getTodoBox={getTodoBox}/> : null} 
       </Col> 
       
       </div>

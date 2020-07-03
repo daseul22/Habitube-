@@ -66,7 +66,10 @@ class Signup extends Component {
           <Button
             onClick={() => {
               axios
-                .post('http://localhost:3000/signup')
+                .post('http://localhost:3000/signup',
+                {email: this.state.email, password: this.state.password, username: this.state.username},
+                {withCredentials:true}
+                )
                 .then(result => {
                   console.log(result);
                   this.props.history.push('/login');
