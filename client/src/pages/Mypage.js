@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Redirect , withRouter} from 'react-router-dom';
+import { Redirect , withRouter, Switch, Route} from 'react-router-dom';
 import TodoBoxContainer from './TodoBoxContainer'
 import Nav from './Nav'
 import axios from 'axios'
@@ -18,34 +18,35 @@ class Mypage extends Component{
     boxes:[]
   };
   componentDidMount(){
+    const { userinfo, isLogin } = this.props
+    const { boxes } = this.state
     
+    axios.post('http://localhost:3000/mypage',{id: userinfo.id})
+    .then(result => {
+      console.log(result);
+      result.data.length ? this.setState({boxes: result.data}) : this.props.history.push('/achievementgoal')
+      ;
+      
+    }).catch(err=>{
+      this.props.history.push('/achievementgoal')
+    })
   }
-  getTodoBox = value => {
-    this.setState({boxes: value})
-  }
+  
   render() {
     const { userinfo, calendar } = this.props
     const { boxes } = this.state
-    const { getTodoBox } = this
     return (
+      <div>
       <Container>
         <Nav/>
         <h1>Mypage</h1>
-          <button onClick={e=>{
-            axios.post('http://localhost:3000/mypage',{id: userinfo.id})
-            .then(result => {
-              console.log(result);
-              result.length ? this.setState({boxes: result}) : this.props.history.push('/achievementgoal');
-              
-            }).catch(err=>{
-              this.props.history.push('/achievementgoal')
-            })
-          }}>정보 불러오기 </button>
+          
         
         <TodoBoxContainer calendar={calendar} boxes={boxes} userinfo={userinfo}
-        getTodoBox={getTodoBox}/>
+        />
         
       </Container>
+      </div>
     );
   }
 }

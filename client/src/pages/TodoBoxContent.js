@@ -22,25 +22,24 @@ class TodoBoxContent extends Component{
     })
   }
   render(){
-    const { boxes, handleShow, getTodoBox } = this.props;
+    const { boxes, handleShow, handleselectedVideo } = this.props;
     
     return(
       <div className="myModal">
         <Card className="mymodal-content">
           <h1>TodoBoxContent</h1>   
           <Alert color="light" onClick={e=> {
+            handleselectedVideo()
+            console.log('clicked')
             axios.post('http://localhost:3000/mypage/selectvideo',{id: 1})
             .then(result => {
               console.log(result);
-              axios.post('http://localhost:3000/mypage',{id: 1})
-            }).then(result => {
-              console.log(result);
-              getTodoBox(result.data)
+              handleselectedVideo()
             }).
             catch(err=>{
               console.log(err)
             })
-          }}> 여기에 동영상 링크가 삽입됩니다.</Alert>
+          }}> 목업 인터렉션</Alert>
           <Alert color="light"> 여기에 동영상 링크가 삽입됩니다.</Alert>
           <Alert color="light"> 여기에 동영상 링크가 삽입됩니다.</Alert>
           <Button onClick={handleShow}>x</Button>
