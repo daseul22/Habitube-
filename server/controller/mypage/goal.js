@@ -11,27 +11,36 @@ function dateFormat(year, month, date, day) {
   return dateString;
   // '2020-07-01 수'
 }
+function genDate(start) {
+  let date = new Date();
+  let getDate = date.getDate();
+  date.setDate(getDate + start);
+  let year = date.getFullYear();
+  let month = date.getMonth();
+  getDate = date.getDate();
+  return new Date([year, month, getDate]);
+}
 function calendar(start, weekly, end) {
   //[{date : '2020-07-01 수'}]
   //weekly [2,4] = 화, 목
   let result = [];
   let getDate = new Date().getDate();
   //------------code---------------
-  let startDate = new Date();
-  startDate.setDate(getDate + start);
-  let startDay = startDate.getDay();
+  // let startDate = new Date();
+  // startDate.setDate(getDate + start);
   // let endDate = new Date();
   // endDate.setDate(getDate + start + end);
   for (let i = 0; i <= end; i++) {
-    startDate.setDate(getDate + start + i);
-    startDay = startDate.getDay();
-    if (weekly.includes(startDay)) {
+    let forDate = genDate(start);
+    forDate.setDate(getDate + start + i);
+    forDay = forDate.getDay();
+    if (weekly.includes(forDay)) {
       result.push({
         date: dateFormat(
-          startDate.getFullYear(),
-          startDate.getMonth() + 1,
-          startDate.getDate(),
-          startDay,
+          forDate.getFullYear(),
+          forDate.getMonth() + 1,
+          forDate.getDate(),
+          forDay,
         ),
       });
     }
