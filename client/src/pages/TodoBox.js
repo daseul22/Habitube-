@@ -14,40 +14,38 @@ import '../etc/App.css';
 class TodoBox extends Component{
   state = {
     isComplete: false,
-    isShowContent: false
+    isShowContent: false,
+    selectedVideo: false
   }
 
   handleShow = () => {
     this.setState({isShowContent: !this.state.isShowContent})
   }
+  handleComplete = () => {
+    this.setState({isComplete: !this.state.isComplete})
+  }
+
+  handleselectedVideo =()=> {
+    this.setState({selectedVideo: true})
+  }
+  
   render(){
-    const { userinfo , getTodoBox } = this.props
-    const { handleShow } = this
-    const { isShowContent } =this.state
+    const { userinfo , box } = this.props
+    const { handleShow, handleselectedVideo , handleComplete} = this
+    const { isShowContent, isComplete , selectedVideo} =this.state
     // boxes 정보가 없으면 div 숨기기
     return(
       <div>
        <Col > 
         <Card sm="4" >
-          <CardTitle>2일</CardTitle>
+          <CardTitle>{box.date}</CardTitle>
           <Button outline color="secondary" onClick={handleShow} >영상 설정하기</Button>
-          <div>
-          <Button color="success" onClick={e=> {
-            axios.post('http://localhost:3000/todaycomplete', {id:userinfo.id})
-            .then(result => {
-              console.log(result)
-              this.setState({isComplete: true})
-            }).catch(err => {
-              console.log(err)
-            })
-          }}>check</Button>
-          <Media width='270px' object src={img2} alt="썸네일" />
-          <CardText>memotitle</CardText>
-          </div>
+          {selectedVideo ? <InBoxContent userinfo={userinfo} handleComplete={handleComplete}/>
+          : null}
           
         </Card>
         {isShowContent ? <TodoBoxContent handleShow={handleShow} id={userinfo.id}
-        getTodoBox={getTodoBox}/> : null} 
+        handleselectedVideo={handleselectedVideo}/> : null} 
       </Col> 
       
       </div>
@@ -57,3 +55,20 @@ class TodoBox extends Component{
   
 }
 export default TodoBox
+
+const InBoxContent = (props) => (
+  <div>
+    <Button color="success" onClick={e=> {
+      axios.post('http://localhost:3000/todaycomplete', {id:props.userinfo.id})
+      .then(result => {
+      console.log(result)
+      props.handleComplete()
+      }).catch(err => {
+       console.log(err)
+      })
+     }}>check</Button>
+    <Media width='270px' object src={img2} alt="썸네일" />
+    <CardText>memotitle</CardText>
+  </div>
+);
+  

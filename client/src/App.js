@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Mypage from './pages/Mypage';
 import AchievementGoal from './pages/AchievementGoal';
 import Signup from './pages/Signup';
+import { is } from 'immutable';
 // import { Login } from './pages';
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
   };
 
   render() {
-    const { isLogin, userinfo, calendar } = this.state;
+    const { isLogin, userinfo } = this.state;
     const { handleId, getCalendar } = this;
     return (
       <div>
@@ -41,7 +42,7 @@ class App extends Component {
           />
           <Route
             path="/mypage"
-            render={() => <Mypage userinfo={userinfo} calendar={calendar} />}
+            render={() => <Mypage userinfo={userinfo} isLogin={isLogin} />}
           />
           <Route path="/signup" render={() => <Signup />} />
           <Route
