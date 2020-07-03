@@ -23,24 +23,26 @@ function genDate(start) {
 function calendar(start, weekly, end) {
   //[{date : '2020-07-01 수'}]
   //weekly [2,4] = 화, 목
-  let result = [];
+  let result = {};
   let getDate = new Date().getDate();
   //------------code---------------
-  // let startDate = new Date();
-  // startDate.setDate(getDate + start);
-  // let endDate = new Date();
-  // endDate.setDate(getDate + start + end);
+
   for (let i = 0; i <= end; i++) {
-    let forDate = genDate(start);
-    forDate.setDate(getDate + start + i);
-    forDay = forDate.getDay();
-    if (weekly.includes(forDay)) {
-      result.push({
+    let nextDate = genDate(start);
+    nextDate.setDate(getDate + start + i);
+    let nextDay = nextDate.getDay();
+    let nextMonthForm = '0' + (nextDate.getMonth() + 1);
+    let monthBox = nextDate.getFullYear() + '_' + nextMonthForm.slice(-2);
+    if (!(monthBox in result)) {
+      result[monthBox] = [];
+    }
+    if (weekly.includes(nextDay)) {
+      result[monthBox].push({
         date: dateFormat(
-          forDate.getFullYear(),
-          forDate.getMonth() + 1,
-          forDate.getDate(),
-          forDay,
+          nextDate.getFullYear(),
+          nextDate.getMonth() + 1,
+          nextDate.getDate(),
+          nextDay,
         ),
       });
     }
@@ -62,22 +64,27 @@ module.exports = {
         },
       )
       .catch((err) => {
-        res.status(404).send("Dont't find userID");
+        res
+          .status(404)
+          .send("Dont't find userID, the todobox cannot be created");
       });
 
-    let calendarArr = calendar(startDate, weekly, deadLine);
-    for (let i = 0; i < calendarArr.length; i++) {
-      calendarArr[i].usersId = id;
+    let calendarObj = calendar(startDate, weekly, deadLine);
+    let createFormat = [];
+    for (monthBox in calendarObj) {
+      for (let i = 0; i < calendarObj[monthBox].length; i++) {
+        let addUserID = Object.assign({}, calendarObj[monthBox][i]);
+        addUserID.usersId = id;
+        createFormat.push(addUserID);
+      }
     }
-    todobox.bulkCreate(calendarArr).catch((err) => {
+    todobox.bulkCreate(createFormat).catch((err) => {
       res.status(404).send({
         message: 'goal error',
       });
     });
-    for (let i = 0; i < calendarArr.length; i++) {
-      delete calendarArr[i].usersId;
-    }
-    res.status(200).send(calendarArr);
+
+    res.status(200).send(calendarObj);
   },
 };
 

@@ -15,11 +15,19 @@ module.exports = {
         ],
       })
       .then((todoboxes) => {
-        res.status(200).send(todoboxes);
+        let result = {};
+        for (let i = 0; i < todoboxes.length; i++) {
+          let monthBox = todoboxes[i].date.slice(0, 7).split('-').join('_');
+          if (!(monthBox in result)) {
+            result[monthBox] = [];
+          }
+          result[monthBox].push(todoboxes[i]);
+        }
+        res.status(200).send(result);
       })
       .catch((err) => {
         res.status(404).send({
-          message: null,
+          message: 'Unable to get todobox',
         });
       });
   },
