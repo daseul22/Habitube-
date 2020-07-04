@@ -12,7 +12,8 @@ const port = 3000;
 
 app.use(
   cors({
-    origin: 'http://localhost:4000',
+    origin:
+      'http://habitube-first-deploy.s3-website.ap-northeast-2.amazonaws.com',
     methods: ['GET', 'POST', 'OPTIONS'],
     credentials: true,
   }),
