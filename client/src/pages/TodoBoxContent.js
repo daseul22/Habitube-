@@ -12,8 +12,8 @@ class TodoBoxContent extends Component{
   // 1. getvideolist => 동영상 리스트 받아오기
   // 2. selectedvideo => 동영상 선택하기 => 동영상 정보를 다시 받아와야함 => mypage 요청
   componentDidMount(){
-    axios.post('http://localhost:3000/mypage/getvideolist',
-    {id:this.props.id})
+    axios.get('http://localhost:3000/mypage/getvideolist',
+    {withCredentials:true})
     .then(result => {
       console.log(result)
       this.setState({videoList: result})
