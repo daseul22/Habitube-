@@ -1,9 +1,9 @@
 module.exports = {
   development: {
     username: 'root',
-    password: 'asd1234%',
+    password: 'root',
     database: 'habitube',
-    host: 'habitube-first.cherr9llnuvi.ap-northeast-2.rds.amazonaws.com',
+    host: 'localhost',
     dialect: 'mysql',
     logging: false,
   },
