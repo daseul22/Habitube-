@@ -15,20 +15,21 @@ import { Container } from 'reactstrap';
 // isComplete: true, date:'2020-06-30 월'},{}]
 class Mypage extends Component{
   state = {
-    boxes:[]
+    boxes:{}
   };
   componentDidMount(){
     const { userinfo, isLogin } = this.props
     const { boxes } = this.state
     
-    axios.post('http://localhost:3000/mypage',{id: userinfo.id})
+    axios.post('http://localhost:3000/mypage',{id:userinfo.id},{withCredentials: true})
     .then(result => {
       console.log(result);
-      result.data.length ? this.setState({boxes: result.data}) : this.props.history.push('/achievementgoal')
+      // 데이터 객체일때 값 존재유무 구별법?
+      result.data ? this.setState({boxes: result.data}) : this.props.history.push('/achievementgoal')
       ;
       
     }).catch(err=>{
-      this.props.history.push('/achievementgoal')
+      //this.props.history.push('/achievementgoal')
     })
   }
   
