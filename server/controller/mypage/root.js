@@ -1,11 +1,11 @@
 const { todobox } = require('../../models');
 
 module.exports = {
-  post: (req, res) => {
-    let { id } = req.body;
+  get: (req, res) => {
+    let { userid } = req.session;
     todobox
       .findAll({
-        where: { usersId: id },
+        where: { usersId: userid },
         attributes: [
           'memoTitle',
           'memoContent',
