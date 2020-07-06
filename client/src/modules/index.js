@@ -1,7 +1,7 @@
-import { combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 //import reducers
-import apod from './action'
+import action from './action';
 
 export default combineReducers({
-  apod
-})
+  action,
+});

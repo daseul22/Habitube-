@@ -21,15 +21,14 @@ class Login extends Component {
     passwordValue: '',
   };
 
- 
-  handleInputValue = key => e => {
+  handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
 
   render() {
     const { handleInputValue } = this;
-    const { emailValue, passwordValue } = this.state ;
-    const { handleId } = this.props;
+    const { emailValue, passwordValue } = this.state;
+    const { handleId, handleLogin } = this.props;
 
     // login 이 되어있으면 mypage로 이동 , 안 되어 있으면 다시 login 으로 이동
     return (
@@ -42,8 +41,12 @@ class Login extends Component {
         </h1>
         <FormGroup>
           <Label>Email</Label>
-          <Input invalid type="emailValue" placeholder="Email" 
-          onChange={handleInputValue('emailValue')}/>
+          <Input
+            invalid
+            type="emailValue"
+            placeholder="Email"
+            onChange={handleInputValue('emailValue')}
+          />
           <FormFeedback>이미 등록된 이메일에요!!</FormFeedback>
           <FormText>이메일을 입력하세요.</FormText>
           <FormGroup check inline>
@@ -54,29 +57,39 @@ class Login extends Component {
         </FormGroup>
         <FormGroup>
           <Label>Password</Label>
-          <Input invalid type="passwordValue" placeholder="Password" 
-          onChange={handleInputValue('passwordValue')}/>
+          <Input
+            invalid
+            type="password"
+            placeholder="Password"
+            onChange={handleInputValue('passwordValue')}
+          />
           <FormFeedback>숫자로 이루어진 비밀번호는 없습니다.</FormFeedback>
           <FormText>비밀번호를 입력하세요.</FormText>
           <br></br>
         </FormGroup>
-        
-          <ButtonToggle className="btn-lg btn-block" color="primary" 
-          onClick={()=>{
-            axios.post('http://localhost:3000/login',
-            {email: emailValue, password: passwordValue },
-            {withCredentials:true}
-            ).then(result => {
-              console.log(result.data.userInfo);
-              handleId(result.data.userInfo);
-              this.props.history.push('/mypage')
-            }).catch(err => {
-              console.log(err)
-            })
-          }}>
-            로그인
-          </ButtonToggle>{' '}
-       
+        <ButtonToggle
+          className="btn-lg btn-block"
+          color="primary"
+          onClick={() => {
+            axios
+              .post(
+                'http://localhost:3000/login',
+                { email: emailValue, password: passwordValue },
+                { withCredentials: true },
+              )
+              .then((result) => {
+                console.log(result.data.userInfo);
+                handleId(result.data.userInfo);
+                handleLogin();
+                this.props.history.push('/mypage');
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }}
+        >
+          로그인
+        </ButtonToggle>{' '}
         <Link to="/signup">
           <ButtonToggle className="btn-lg btn-block" color="secondary">
             회원가입
@@ -93,4 +106,4 @@ class Login extends Component {
     // <div className="App">login page입니다.</div>;
   }
 }
-export default withRouter(Login) ;
+export default withRouter(Login);
