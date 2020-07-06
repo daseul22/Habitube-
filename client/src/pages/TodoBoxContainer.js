@@ -23,26 +23,29 @@ class TodoBoxContainer extends Component {
       // 무한 스크롤링, 날짜 이용해서 구획 주기 방법 고안
 
       <div>
-        <h1>
-          <Badge color="secondary">7월</Badge>
-        </h1>
         {Object.keys(boxes).map((k, index) => {
           console.log(boxes[k]);
           return (
-            <Row>
-              <Badge color="secondary">{boxes[k][0].date.slice(5, 7)}월</Badge>
-              {boxes[k].map((inbox, i) => {
-                console.log(inbox);
-                return (
-                  <TodoBox
-                    className="todo-box"
-                    key={i}
-                    userinfo={userinfo}
-                    box={inbox}
-                  />
-                );
-              })}
-            </Row>
+            <div>
+              <h1>
+                <Badge color="secondary" key={boxes[k][0].date.slice(5, 7)}>
+                  {boxes[k][0].date.slice(5, 7)}월
+                </Badge>
+              </h1>
+              <Row xs="4">
+                {boxes[k].map((inbox, i) => {
+                  console.log(inbox);
+                  return (
+                    <TodoBox
+                      className="todo-box"
+                      key={inbox.date.toString()}
+                      userinfo={userinfo}
+                      box={inbox}
+                    />
+                  );
+                })}
+              </Row>
+            </div>
           );
         })}
         {/* {calendar.map((box,i )=> {

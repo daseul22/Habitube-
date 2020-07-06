@@ -15,34 +15,50 @@ class App extends Component {
       email: '',
       id: '',
     },
+    keyword: '',
     calendar: [],
   };
 
-  handleId = value => {
+  handleId = (value) => {
     this.setState({ userinfo: value });
   };
-  getCalendar = value => {
+  handleKeyword = (value) => {
+    this.setState({ keyword: value });
+  };
+  getCalendar = (value) => {
     this.setState({ calendar: value });
   };
-
+  handleLogin = () => {
+    this.setState({ isLogin: !this.state.isLogin });
+  };
   render() {
-    const { isLogin, userinfo } = this.state;
-    const { handleId, getCalendar } = this;
+    const { isLogin, userinfo, keyword } = this.state;
+    const { handleId, getCalendar, handleLogin, handleKeyword } = this;
     return (
       <div>
         <Switch>
           <Route
             exact
             path="/login"
-            render={() => <Login handleId={handleId} />}
+            render={() => (
+              <Login handleId={handleId} handleLogin={handleLogin} />
+            )}
           />
           <Route
             path="/achievementgoal"
-            render={() => <AchievementGoal getCalendar={getCalendar} userinfo={userinfo} />}
+            render={() => (
+              <AchievementGoal
+                getCalendar={getCalendar}
+                userinfo={userinfo}
+                handleKeyword={handleKeyword}
+              />
+            )}
           />
           <Route
             path="/mypage"
-            render={() => <Mypage userinfo={userinfo} isLogin={isLogin} />}
+            render={() => (
+              <Mypage userinfo={userinfo} isLogin={isLogin} keyword={keyword} />
+            )}
           />
           <Route path="/signup" render={() => <Signup />} />
           <Route

@@ -19,7 +19,7 @@ class Signup extends Component {
     return <Redirect to="/mypage" />;
   }
 
-  handleInputValue = key => e => {
+  handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
 
@@ -66,16 +66,21 @@ class Signup extends Component {
           <Button
             onClick={() => {
               axios
-                .post('http://localhost:3000/signup',
-                {email: this.state.email, password: this.state.password, username: this.state.username},
-                {withCredentials:true}
+                .post(
+                  'http://localhost:3000/signup',
+                  {
+                    email: this.state.email,
+                    password: this.state.password,
+                    username: this.state.username,
+                  },
+                  { withCredentials: true },
                 )
-                .then(result => {
+                .then((result) => {
                   console.log(result);
                   this.props.history.push('/login');
                   alert('가입완료');
                 })
-                .catch(err => {
+                .catch((err) => {
                   console.log(err);
                 });
 
