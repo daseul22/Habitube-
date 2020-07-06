@@ -3,14 +3,14 @@ const router = express.Router();
 
 const { mypageController } = require('../controller');
 
-// * POST /mypage
-router.post('/', mypageController.root.post);
+// * GET /mypage
+router.get('/', mypageController.root.get);
 
 // * POST /mypage/goal
 router.post('/goal', mypageController.goal.post);
 
-// * POST /mypage/getvideolist
-router.post('/getvideolist', mypageController.getvideolist.post);
+// * GET /mypage/getvideolist
+router.get('/getvideolist', mypageController.getvideolist.get);
 
 // * POST /mypage/selectvideo
 router.post('/selectvideo', mypageController.selectvideo.post);
