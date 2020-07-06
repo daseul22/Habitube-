@@ -8,6 +8,8 @@ let arr = [1, 2, 3, 4];
 
 // 처음 가입후 정보입력 => 달력: calendar
 // 정보 불러오기 => 달력 + todobox 정보: boxes
+// 달 넘길때마다 데이터 패치
+// 페이지 빈공간에 데이터없음 표시
 class TodoBoxContainer extends Component {
   state = {
     list: [],
