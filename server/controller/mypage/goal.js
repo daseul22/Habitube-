@@ -16,7 +16,7 @@ function genDate(start) {
   let getDate = date.getDate();
   date.setDate(getDate + start);
   let year = date.getFullYear();
-  let month = date.getMonth();
+  let month = date.getMonth() + 1;
   getDate = date.getDate();
   return new Date([year, month, getDate]);
 }
