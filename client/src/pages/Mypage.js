@@ -6,13 +6,8 @@ import Nav from './Nav';
 import axios from 'axios';
 import { Container } from 'reactstrap';
 
-// 마이페이지의 상태 : memoTitle, memoContent, youtubeInfo, isComplete, date
-// 목표 정보가 있는지 서버에 요청
-// o => TodoBoxContainer
-// x => AchievementGoal
-// 마이페이지에서 어떻게 포스트하지?
-// [{memoTitle: '', memoContent: '', youtubeInfo:'',
-// isComplete: true, date:'2020-06-30 월'},{}]
+// 마이페이지에서 componentDidMount에서 axios하지말고 수정이 필요함
+
 class Mypage extends Component {
   state = {
     boxes: {},
@@ -44,7 +39,7 @@ class Mypage extends Component {
       <div>
         <Container>
           <Nav userinfo={userinfo} />
-          <h1>Mypage: {keyword}</h1>
+          <h1>당신의 주제: {keyword}</h1>
 
           <TodoBoxContainer
             calendar={calendar}

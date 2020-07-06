@@ -57,7 +57,12 @@ class TodoBox extends Component {
       handleShowPreview,
       handleselectedVideo,
     } = this;
-    const { viewContentModal, viewVideoModal, isShowPreview } = this.state;
+    const {
+      viewContentModal,
+      viewVideoModal,
+      isShowPreview,
+      selectedVideo,
+    } = this.state;
     // boxes 정보가 없으면 div 숨기기
     return (
       <div>
@@ -72,6 +77,7 @@ class TodoBox extends Component {
                 userinfo={userinfo}
                 handleComplete={handleComplete}
                 handleVideoModal={handleVideoModal}
+                selectedVideo={selectedVideo}
               />
             )}
           </Card>
@@ -84,25 +90,36 @@ class TodoBox extends Component {
             handleselectedVideo={handleselectedVideo}
           />
         )}
-        {viewVideoModal && <ViewVideo handleModal={handleVideoModal} />}
+        {viewVideoModal && (
+          <ViewVideo
+            handleModal={handleVideoModal}
+            selectedVideo={selectedVideo}
+          />
+        )}
       </div>
     );
   }
 }
 export default TodoBox;
 
-const TodoBoxPreview = (props) => (
+//selectedVideo에서 정보 받아와 이미지, 메모 렌더
+const TodoBoxPreview = ({
+  selectedVideo,
+  userinfo,
+  handleComplete,
+  handleVideoModal,
+}) => (
   <div>
     <Button
       color="success"
       onClick={(e) => {
         axios
           .post('http://localhost:3000/todaycomplete', {
-            id: props.userinfo.id,
+            id: userinfo.id,
           })
           .then((result) => {
             console.log(result);
-            props.handleComplete();
+            handleComplete();
           })
           .catch((err) => {
             console.log(err);
@@ -114,9 +131,9 @@ const TodoBoxPreview = (props) => (
     <Media
       width="250px"
       object
-      src={img2}
+      src={selectedVideo}
       alt="썸네일"
-      onClick={props.handleVideoModal}
+      onClick={handleVideoModal}
     />
     <CardText>memotitle</CardText>
   </div>
