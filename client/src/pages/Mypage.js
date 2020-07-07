@@ -42,6 +42,9 @@ const Mypage = ({ userinfo, isLogin, keyword }) => {
         <Nav userinfo={userinfo} />
         <h1>당신의 주제: {keyword}</h1>
         <TodoBoxContainer boxes={data} userinfo={userinfo} />
+        <Button onClick={() => history.push('/achievementgoal')}>
+          맞춤형 달력 만들러 가기
+        </Button>
       </Container>
     </div>
   );
