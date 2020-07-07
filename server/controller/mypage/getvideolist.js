@@ -28,8 +28,22 @@ module.exports = {
           console.log(keyword);
           let searchArg = { query: keyword, max: 3, key: youtubeKey };
           searchYouTube(searchArg, (videoList) => {
-            console.log(videoList);
-            res.status(200).send(videoList);
+            let result = [];
+            for (let i = 0; i < videoList.length; i++) {
+              result.push({
+                id: videoList[i].id.videoId,
+                snippet: {
+                  title: videoList[i].snippet.title,
+                  thumbnails: {
+                    medium: {
+                      url: videoList[i].snippet.thumbnails.medium.url,
+                    },
+                  },
+                },
+              });
+            }
+            console.log(result);
+            res.status(200).send(result);
           });
         });
     } else {
