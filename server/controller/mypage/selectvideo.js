@@ -33,13 +33,21 @@ module.exports = {
           },
         },
       )
+      .then((updatedCount) => {
+        if (updatedCount[0] === 0) {
+          res.status(404).send({
+            message: 'Does not match the target date',
+          });
+        } else {
+          res.status(200).send({
+            message: 'Success',
+          });
+        }
+      })
       .catch((err) => {
         res.status(404).send({
           message: 'There is no video information.',
         });
       });
-    res.status(200).send({
-      message: 'Success',
-    });
   },
 };

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       memoTitle: DataTypes.STRING,
       memoContent: DataTypes.STRING,
       youtubeInfo: DataTypes.STRING,
-     // isComplete: DataTypes.BOOLEAN,
+      // isComplete: DataTypes.BOOLEAN,
       isComplete: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
