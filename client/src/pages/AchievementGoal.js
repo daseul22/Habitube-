@@ -51,7 +51,7 @@ class AchievementGoal extends Component {
 
   render() {
     const { keyword, startDay, term, selectedDay, cSelected } = this.state;
-    const { userinfo, getCalendar, handleKeyword } = this.props;
+    const { userinfo, getCalendar } = this.props;
 
     return (
       <Form inline className="achivementgoal-form">
@@ -172,8 +172,7 @@ class AchievementGoal extends Component {
               )
               .then((result) => {
                 console.log(result);
-                getCalendar(result.data);
-                handleKeyword(keyword);
+
                 this.props.history.push('/mypage');
               })
               .catch((err) => {

@@ -14,8 +14,9 @@ class App extends Component {
       username: '',
       email: '',
       id: '',
+      keyword: '',
     },
-    keyword: '',
+
     calendar: [],
     term: 0,
   };
@@ -26,9 +27,7 @@ class App extends Component {
   setTerm = (value) => {
     this.setState({ term: value });
   };
-  handleKeyword = (value) => {
-    this.setState({ keyword: value });
-  };
+
   getCalendar = (value) => {
     this.setState({ calendar: value });
   };
@@ -37,7 +36,7 @@ class App extends Component {
   };
   render() {
     const { isLogin, userinfo, keyword } = this.state;
-    const { handleId, getCalendar, handleLogin, handleKeyword, setTerm } = this;
+    const { handleId, getCalendar, handleLogin, setTerm } = this;
     return (
       <div>
         <Switch>
@@ -54,7 +53,6 @@ class App extends Component {
               <AchievementGoal
                 getCalendar={getCalendar}
                 userinfo={userinfo}
-                handleKeyword={handleKeyword}
                 setTerm={setTerm}
               />
             )}

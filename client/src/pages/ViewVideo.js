@@ -11,7 +11,12 @@ const ViewVideo = ({ handleModal, selectedVideo }) => {
     <div className="myModal">
       <Card className="mymodal-content">
         <h1>ViewVideo</h1>
-        <Media width="720px" object src={selectedVideo} alt="썸네일" />
+        <Media
+          width="720px"
+          object
+          src={selectedVideo.snippet.thumbnails.high.url}
+          alt="썸네일"
+        />
         <Alert color="light"> memoTitle</Alert>
         <Alert color="light"> memoContent</Alert>
         <Button onClick={handleModal}>x</Button>

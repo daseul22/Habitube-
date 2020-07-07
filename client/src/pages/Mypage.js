@@ -17,21 +17,31 @@ import { get } from 'immutable';
 // 마이페이지에서 componentDidMount에서 axios하지말고 수정이 필요함
 
 const Mypage = ({ userinfo, isLogin, keyword }) => {
-  const boxes = useSelector((state) => state.mypage.data);
+  const { data, doing, error } = useSelector((state) => state.mypage);
+  const err = useSelector((state) => state.mypage.pending);
   const history = useHistory();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   //console.log(boxes);
   useEffect(() => {
+    console.log(err);
     if (!isLogin) return history.push('/login');
+    setLoading(true);
     dispatch(getMypage());
-  });
+
+    // error 케이스 잡는방법
+
+    setLoading(false);
+  }, []);
 
   return (
     <div>
+      {/* {Array.isArray(data) ? history.push('/achievementgoal') : null} */}
+      {console.log(Array.isArray(data))}
       <Container>
         <Nav userinfo={userinfo} />
         <h1>당신의 주제: {keyword}</h1>
-        <TodoBoxContainer boxes={boxes} userinfo={userinfo} />
+        <TodoBoxContainer boxes={data} userinfo={userinfo} />
       </Container>
     </div>
   );

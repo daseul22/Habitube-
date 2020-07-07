@@ -2,12 +2,14 @@ import { handleActions } from 'redux-actions';
 
 import axios from 'axios';
 
-const GET_BOXES_PENDING = 'GET_BOXES_PENDING';
-const GET_BOXES_SUCCESS = 'GET_BOXES_SUCCESS';
-const GET_BOXES_FAILURE = 'GET_BOXES_FAILURE';
+const GET_LIST_PENDING = 'GET_LIST_PENDING';
+const GET_LIST_SUCCESS = 'GET_LIST_SUCCESS';
+const GET_LIST_FAILURE = 'GET_LIST_FAILURE';
 
-function mypageAPI() {
-  return axios.get('http://localhost:3000/mypage', { withCredentials: true });
+function getvideoAPI() {
+  return axios.get('http://localhost:3000/mypage/getvideolist', {
+    withCredentials: true,
+  });
 }
 
 const initialState = {
@@ -16,19 +18,19 @@ const initialState = {
   data: [],
 };
 
-export const getMypage = () => (dispatch) => {
-  dispatch({ type: GET_BOXES_PENDING });
+export const getvideoList = () => (dispatch) => {
+  dispatch({ type: GET_LIST_PENDING });
 
-  return mypageAPI()
+  return getvideoAPI()
     .then((result) => {
       dispatch({
-        type: GET_BOXES_SUCCESS,
+        type: GET_LIST_SUCCESS,
         payload: result.data,
       });
     })
     .catch((error) => {
       dispatch({
-        type: GET_BOXES_FAILURE,
+        type: GET_LIST_FAILURE,
         payload: error,
       });
     });
@@ -36,21 +38,21 @@ export const getMypage = () => (dispatch) => {
 
 export default handleActions(
   {
-    [GET_BOXES_PENDING]: (state, action) => {
+    [GET_LIST_PENDING]: (state, action) => {
       return {
         ...state,
         pending: true,
         error: false,
       };
     },
-    [GET_BOXES_SUCCESS]: (state, action) => {
+    [GET_LIST_SUCCESS]: (state, action) => {
       return {
         ...state,
         pending: false,
         data: action.payload,
       };
     },
-    [GET_BOXES_FAILURE]: (state, action) => {
+    [GET_LIST_FAILURE]: (state, action) => {
       return {
         ...state,
         pending: false,
