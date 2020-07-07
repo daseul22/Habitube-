@@ -59,9 +59,7 @@ class App extends Component {
           />
           <Route
             path="/mypage"
-            render={() => (
-              <Mypage userinfo={userinfo} isLogin={isLogin} keyword={keyword} />
-            )}
+            render={() => <Mypage userinfo={userinfo} isLogin={isLogin} />}
           />
           <Route path="/signup" render={() => <Signup />} />
           <Route

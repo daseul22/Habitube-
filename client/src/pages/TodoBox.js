@@ -74,6 +74,7 @@ const TodoBox = ({ userinfo, box }) => {
               handleComplete={handleComplete}
               handleVideoModal={handleVideoModal}
               selectedVideo={selectedVideo}
+              box={box}
             />
           )}
         </Card>
@@ -91,6 +92,7 @@ const TodoBox = ({ userinfo, box }) => {
         <ViewVideo
           handleModal={handleVideoModal}
           selectedVideo={selectedVideo}
+          id={userinfo.id}
         />
       )}
     </div>
@@ -104,8 +106,9 @@ const TodoBoxPreview = ({
   userinfo,
   handleComplete,
   handleVideoModal,
+  box,
 }) => (
-  <div>
+  <div className="todo-box">
     <Button
       color="success"
       onClick={(e) => {
@@ -130,12 +133,12 @@ const TodoBoxPreview = ({
       check
     </Button>
     <Media
-      width="250px"
+      width="100%"
       object
       src={selectedVideo.snippet.thumbnails.medium.url}
       alt="썸네일"
       onClick={handleVideoModal}
     />
-    <CardText>memotitle</CardText>
+    <CardText>memoTitle: {box.memoTitle}</CardText>
   </div>
 );
