@@ -27,6 +27,7 @@ module.exports = {
               username: user.username,
               email: user.email,
               id: user.id,
+              keyword: user.keyword,
             },
           });
         }
