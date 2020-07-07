@@ -7,5 +7,5 @@ module.exports = {
     dialect: 'mysql',
     logging: false,
   },
-  youtubeKey: 'AIzaSyBfgacYuN_Z3KdHTi_ZSD8kHpgIqKhYqNQ',
+  youtubeKey: 'AIzaSyCS0Q-2Axiaju6eg43C5A3U8t3sK9IW_kQ',
 };

@@ -13,6 +13,7 @@ const TodoBoxContent = ({
   handleShowPreview,
   handleselectedVideo,
   id,
+  date,
 }) => {
   const { data, doing, error } = useSelector((state) => state.videolist);
   // videoList 길이만큼 링크를 띄우면됨.
@@ -33,6 +34,7 @@ const TodoBoxContent = ({
               handleShowPreview={handleShowPreview}
               handleselectedVideo={handleselectedVideo}
               id={id}
+              date={date}
             />
           );
         })}
@@ -50,6 +52,7 @@ const OneVideoLink = ({
   handleselectedVideo,
   video,
   id,
+  date,
 }) => {
   const dispatch = useDispatch();
   return (
@@ -64,7 +67,11 @@ const OneVideoLink = ({
         axios
           .post(
             'http://localhost:3000/mypage/selectvideo',
-            { id: id, selectedVideo: video },
+            {
+              id: id,
+              selectedVideo: { kind: 'youtube#video', videoId: 'ULE3hvuIt4E' },
+              date: date,
+            },
             { withCredentials: true },
           )
           .then(() => {

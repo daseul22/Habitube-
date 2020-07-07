@@ -62,7 +62,9 @@ const TodoBox = ({ userinfo, box }) => {
     <div>
       <Col className="boxes-col">
         <Card className="boxes-col">
-          <CardTitle>{box.date}</CardTitle>
+          <CardTitle>
+            {box.date.slice(8, 10)}일 {box.date.slice(11)}요일
+          </CardTitle>
           <Button outline color="secondary" onClick={handleContentModal}>
             영상 설정하기
           </Button>
@@ -82,6 +84,7 @@ const TodoBox = ({ userinfo, box }) => {
           id={userinfo.id}
           handleShowPreview={handleShowPreview}
           handleselectedVideo={handleselectedVideo}
+          date={box.date}
         />
       )}
       {viewVideoModal && (

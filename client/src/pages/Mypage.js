@@ -46,7 +46,7 @@ const Mypage = ({ userinfo, isLogin, keyword }) => {
         <h1>당신의 주제: {keyword}</h1>
         <TodoBoxContainer boxes={data} userinfo={userinfo} />
       </Container>
-      <Makeit />
+      {error && <Makeit />}
     </div>
   );
 };

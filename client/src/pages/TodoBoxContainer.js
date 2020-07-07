@@ -4,6 +4,8 @@ import TodoBox from './TodoBox';
 import { getMypage } from '../modules/mypage';
 import { Badge, Row, ButtonGroup, Button } from 'reactstrap';
 import '../etc/App.css';
+import animeition from '../etc/img/25920-questions.json';
+import Lottie from 'react-lottie';
 let arr = [1, 2, 3, 4];
 
 // 처음 가입후 정보입력 => 달력: calendar
@@ -12,7 +14,7 @@ let arr = [1, 2, 3, 4];
 // 페이지 빈공간에 데이터없음 표시
 const TodoBoxContainer = ({ boxes, userinfo }) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [maxPage, setMaxPage] = useState(6);
+  const [maxPage, setMaxPage] = useState(3);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -44,6 +46,9 @@ const TodoBoxContainer = ({ boxes, userinfo }) => {
         다음달
       </Button>
       {Object.keys(boxes).map((k, index) => {
+        // if (index === Object.keys(boxes).length - 1) {
+        //   setMaxPage(index);
+        // }
         if (index === currentPage) {
           return (
             <Page
@@ -54,6 +59,7 @@ const TodoBoxContainer = ({ boxes, userinfo }) => {
           );
         }
       })}
+      {currentPage < 0 || currentPage > maxPage ? <NoData /> : null}
     </>
   );
 };
@@ -81,6 +87,22 @@ const Page = ({ boxes, userinfo }) => {
           );
         })}
       </Row>
+    </div>
+  );
+};
+const NoData = ({}) => {
+  const defaultOptions = {
+    loop: false,
+    autoplay: true,
+    animationData: animeition,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+  return (
+    <div>
+      데이터가 없어요
+      <Lottie options={defaultOptions} width={600} />
     </div>
   );
 };
