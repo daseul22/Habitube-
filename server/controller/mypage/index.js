@@ -4,4 +4,5 @@ module.exports = {
   getvideolist: require('./getvideolist'),
   selectvideo: require('./selectvideo'),
   todaycomplete: require('./todaycomplete'),
+  progress: require('./progress'),
 };
