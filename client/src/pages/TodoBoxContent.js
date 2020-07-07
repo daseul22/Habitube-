@@ -6,17 +6,15 @@ import axios from 'axios';
 import img2 from '../etc/img/img2.png';
 import img3 from '../etc/img/img3.png';
 import img4 from '../etc/img/img4.png';
+import { getMypage } from '../modules/mypage';
 
 const TodoBoxContent = ({
   handleModal,
   handleShowPreview,
   handleselectedVideo,
-  list,
+  id,
 }) => {
   const { data, doing, error } = useSelector((state) => state.videolist);
-
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
   // videoList 길이만큼 링크를 띄우면됨.
   // 1. getvideolist => 동영상 리스트 받아오기
   // 2. selectedvideo => 동영상 선택하기 => 동영상 정보를 다시 받아와야함 => mypage 요청
@@ -34,6 +32,7 @@ const TodoBoxContent = ({
               handleModal={handleModal}
               handleShowPreview={handleShowPreview}
               handleselectedVideo={handleselectedVideo}
+              id={id}
             />
           );
         })}
@@ -50,21 +49,31 @@ const OneVideoLink = ({
   handleShowPreview,
   handleselectedVideo,
   video,
+  id,
 }) => {
+  const dispatch = useDispatch();
   return (
     <Alert
       color="light"
       onClick={(e) => {
+        console.log('clicked');
         handleShowPreview();
         handleModal();
         handleselectedVideo(video);
-        console.log('clicked');
+        dispatch(getMypage());
         axios
-          .post('http://localhost:3000/mypage/selectvideo', { id: 1 })
-          .then((result) => {
-            console.log(result);
+          .post(
+            'http://localhost:3000/mypage/selectvideo',
+            { id: id, selectedVideo: video },
+            { withCredentials: true },
+          )
+          .then(() => {
+            //응답을 받고 여기가 실행이 안됨
+            console.log('영상');
             handleShowPreview();
-            handleselectedVideo();
+            handleModal();
+            handleselectedVideo(video);
+            dispatch(getMypage());
           })
           .catch((err) => {
             console.log(err);

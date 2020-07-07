@@ -10,9 +10,12 @@ import {
 import TodoBoxContainer from './TodoBoxContainer';
 import Nav from './Nav';
 import axios from 'axios';
-import { Container, Button } from 'reactstrap';
+import { Container, Button, Row, Col } from 'reactstrap';
 import { getMypage } from '../modules/mypage';
 import { get } from 'immutable';
+import makeit from '../etc/img/26379-demo-files.json';
+
+import Lottie from 'react-lottie';
 
 // 마이페이지에서 componentDidMount에서 axios하지말고 수정이 필요함
 
@@ -43,8 +46,37 @@ const Mypage = ({ userinfo, isLogin, keyword }) => {
         <h1>당신의 주제: {keyword}</h1>
         <TodoBoxContainer boxes={data} userinfo={userinfo} />
       </Container>
+      <Makeit />
     </div>
   );
 };
 
 export default withRouter(Mypage);
+
+const Makeit = () => {
+  let history = useHistory();
+  const defaultOptions = {
+    loop: false,
+    autoplay: true,
+    animationData: makeit,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
+  return (
+    <Container>
+      <Lottie options={defaultOptions} width={600} />
+      <Row>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <Button
+            color="success"
+            className="achievementgoal-btn"
+            onClick={() => history.push('/achievementgoal')}
+          >
+            맞춤형 달력 만들러 가기
+          </Button>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
