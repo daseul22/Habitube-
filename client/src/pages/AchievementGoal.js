@@ -25,8 +25,8 @@ class AchievementGoal extends Component {
     this.state = {
       // 질의문(keyword), 시작일 , 기간 ,빈도수
       keyword: '',
-      startDay: '',
-      term: '', //기간
+      startDay: '0',
+      term: '1', //기간
       selectedDay: [],
       cSelected: [],
     };

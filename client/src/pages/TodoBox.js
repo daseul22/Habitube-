@@ -27,7 +27,6 @@ const TodoBox = ({ userinfo, box }) => {
   const { data, doing, error } = useSelector((state) => state.videolist);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [list, setList] = useState(false);
 
   const [isComplete, setComplete] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState({});
@@ -83,7 +82,6 @@ const TodoBox = ({ userinfo, box }) => {
           id={userinfo.id}
           handleShowPreview={handleShowPreview}
           handleselectedVideo={handleselectedVideo}
-          list={list}
         />
       )}
       {viewVideoModal && (
@@ -109,10 +107,14 @@ const TodoBoxPreview = ({
       color="success"
       onClick={(e) => {
         axios
-          .post('http://localhost:3000/todaycomplete', {
-            id: userinfo.id,
-            isComplete: true,
-          })
+          .post(
+            'http://localhost:3000/todaycomplete',
+            {
+              id: userinfo.id,
+              isComplete: true,
+            },
+            { withCredentials: true },
+          )
           .then((result) => {
             console.log(result);
             handleComplete();
