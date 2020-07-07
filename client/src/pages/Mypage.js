@@ -19,7 +19,7 @@ import Lottie from 'react-lottie';
 
 // 마이페이지에서 componentDidMount에서 axios하지말고 수정이 필요함
 
-const Mypage = ({ userinfo, isLogin, keyword }) => {
+const Mypage = ({ userinfo, isLogin }) => {
   const { data, doing, error } = useSelector((state) => state.mypage);
   const err = useSelector((state) => state.mypage.pending);
   const history = useHistory();
@@ -38,12 +38,12 @@ const Mypage = ({ userinfo, isLogin, keyword }) => {
   }, []);
 
   return (
-    <div>
+    <div className="mypage">
       {/* {Array.isArray(data) ? history.push('/achievementgoal') : null} */}
       {console.log(Array.isArray(data))}
       <Container>
         <Nav userinfo={userinfo} />
-        <h1>당신의 주제: {keyword}</h1>
+        <h2>당신의 주제: {userinfo.keyword}</h2>
         <TodoBoxContainer boxes={data} userinfo={userinfo} />
       </Container>
       {error && <Makeit />}
