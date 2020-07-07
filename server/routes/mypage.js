@@ -18,4 +18,7 @@ router.post('/selectvideo', mypageController.selectvideo.post);
 // * POST /mypage/todaycomplete
 router.post('/todaycomplete', mypageController.todaycomplete.post);
 
+// * GET /mypage/getvideolist
+router.get('/progress', mypageController.progress.get);
+
 module.exports = router;
