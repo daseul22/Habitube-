@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+@font-face {
+  font-family: 'Nanum Gothic', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+}
+body {
+  font-family: 'Nanum Gothic';
+  background-color: #fefefeef;
+}
 .login-form {
   width: 100%;
   max-width: 330px;
@@ -35,11 +44,9 @@
 .todo-box-container {
   display: inline-block;
 }
-.todo-box {
-  float: left;
-  width: 340px;
-  height: 250px;
-  display: inline-block;
+.card {
+  padding: 10px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.07);
 }
 .myModal {
   position: fixed; /* Stay in place */
@@ -54,14 +61,37 @@
 }
 .mymodal-content {
   background-color: #fefefe;
-  margin: 10% auto; /* 15% from the top and centered */
+  margin: 5% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 90%; /* Could be more or less, depending on screen size */
 }
 .boxes-col {
   height: 280px;
   margin: 10px auto;
 }
 .achievementgoal-btn {
+}
+.mypage {
+  font-family: 'Nanum Gothic';
+  background-color: #fdfdfd;
+}
+.container {
+  background-color: #fdfdfd;
+  padding-top: 10px;
+}
+.page-btn {
+  float: right;
+  margin-right: 15px;
+}
+.mypage h2 {
+  margin-left: 12px;
+  margin-top: 40px;
+  color: rgba(0, 0, 0, 0.562);
+}
+.month {
+  margin-top: 10px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.76);
+  font-size: x-large;
 }

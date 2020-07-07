@@ -29,22 +29,28 @@ const TodoBoxContainer = ({ boxes, userinfo }) => {
     // 무한 스크롤링, 날짜 이용해서 구획 주기 방법 고안
     // 페이지네이션 : 페이지를 컴포넌트로 빼고 props로 현재 스테이트인 페이지만 주기
     <>
-      <Button
-        onClick={() => {
-          setCurrentPage(currentPage - 1);
-          dispatch(getMypage());
-        }}
-      >
-        이전달
-      </Button>
-      <Button
-        onClick={() => {
-          setCurrentPage(currentPage + 1);
-          dispatch(getMypage());
-        }}
-      >
-        다음달
-      </Button>
+      <div className="page-btn">
+        <Button
+          outline
+          color="secondary"
+          onClick={() => {
+            setCurrentPage(currentPage - 1);
+            dispatch(getMypage());
+          }}
+        >
+          이전달
+        </Button>
+        <Button
+          outline
+          color="secondary"
+          onClick={() => {
+            setCurrentPage(currentPage + 1);
+            dispatch(getMypage());
+          }}
+        >
+          다음달
+        </Button>
+      </div>
       {Object.keys(boxes).map((k, index) => {
         // if (index === Object.keys(boxes).length - 1) {
         //   setMaxPage(index);
@@ -68,18 +74,15 @@ export default TodoBoxContainer;
 
 const Page = ({ boxes, userinfo }) => {
   return (
-    <div>
-      <h1>
-        <Badge color="secondary" key={boxes[0].date.slice(5, 7)}>
-          {boxes[0].date.slice(5, 7)}월
-        </Badge>
-      </h1>
+    <div className="container">
+      <h3 className="month">
+        <div key={boxes[0].date.slice(5, 7)}>{boxes[0].date.slice(5, 7)}월</div>
+      </h3>
       <Row xs="4">
         {boxes.map((inbox, i) => {
           console.log(inbox);
           return (
             <TodoBox
-              className="todo-box"
               key={inbox.date.toString()}
               userinfo={userinfo}
               box={inbox}
