@@ -25,7 +25,7 @@ const TodoBoxContainer = ({ boxes, userinfo }) => {
     setLoading(false);
   }, []);
   console.log(Object.keys(boxes));
-  let a = Object.keys(boxes).length;
+  //let a = Object.keys(boxes).length;
   return (
     // 날 => 월로 환산하는데, 이번달 다음달을 어떻게 구분하지?
     // 무한 스크롤링, 날짜 이용해서 구획 주기 방법 고안
@@ -48,7 +48,7 @@ const TodoBoxContainer = ({ boxes, userinfo }) => {
           onClick={() => {
             setCurrentPage(currentPage + 1);
             dispatch(getMypage());
-            setMaxPage(a);
+            //setMaxPage(a);
           }}
         >
           다음달

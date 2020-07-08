@@ -145,7 +145,6 @@ const TodoBoxPreview = ({
   checkbtn,
 }) => {
   const dispatch = useDispatch();
-  console.log(box.youtubeInfo.snippet);
   const [completIcon, setCompletIcon] = useState(false);
   const handleCompletIcon = () => {
     setCompletIcon(true);
@@ -172,6 +171,7 @@ const TodoBoxPreview = ({
       <Button
         color="success"
         onClick={(e) => {
+          console.log(box);
           axios
             .post(
               'http://localhost:3000/mypage/todaycomplete',
@@ -195,7 +195,7 @@ const TodoBoxPreview = ({
       <Media
         width="100%"
         object
-        src={box.youtubeInfo.snippet.thumbnails.medium.url}
+        //src={box.youtubeInfo.snippet.thumbnails.medium.url}
         alt="썸네일"
         onClick={handleVideoModal}
       />
