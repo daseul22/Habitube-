@@ -2,11 +2,12 @@ import { handleActions } from 'redux-actions';
 
 import axios from 'axios';
 
-const GET_TODAY_PENDING = 'GET_TODAY_PENDING';
-const GET_TODAY_SUCCESS = 'GET_TODAY_SUCCESS';
-const GET_TODAY_FAILURE = 'GET_TODAY_FAILURE';
 
-function todayCompleteApi() {
+const GET_TODAY_PENDING = 'GET_LIST_PENDING';
+const GET_TODAY_SUCCESS = 'GET_LIST_SUCCESS';
+const GET_TODAY_FAILURE = 'GET_LIST_FAILURE';
+
+function todayCompleteAPI() {
   return axios.get('http://localhost:3000/mypage/todaycomplete', {
     withCredentials: true,
   });
@@ -18,10 +19,12 @@ const initialState = {
   data: [],
 };
 
-export const postTodayComplete = () => (dispatch) => {
+
+export const todayComplete = () => (dispatch) => {
   dispatch({ type: GET_TODAY_PENDING });
 
-  return todayCompleteApi()
+  return todayCompleteAPI()
+
     .then((result) => {
       dispatch({
         type: GET_TODAY_SUCCESS,
