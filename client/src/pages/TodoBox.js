@@ -33,7 +33,23 @@ const TodoBox = ({ userinfo, box }) => {
   const [isShowPreview, setShowPreview] = useState(false);
   const [viewContentModal, setViewContentModal] = useState(false);
   const [viewVideoModal, setViewVideoModal] = useState(false);
+  const [today, setToday] = useState('2020-07-07 화');
 
+  function dateFormat() {
+    //['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth() + 1;
+    let date = new Date().getDate();
+    let day = new Date().getDay();
+    let dayTable = ['일', '월', '화', '수', '목', '금', '토', '일'];
+    month = '0' + month;
+    date = '0' + date;
+    let dateString = `${year}-${month.slice(-2)}-${date.slice(-2)} ${
+      dayTable[day]
+    }`;
+    return dateString;
+    // '2020-07-01 수'
+  }
   const handleContentModal = () => {
     // 패치
     if (!viewContentModal) {
@@ -44,7 +60,9 @@ const TodoBox = ({ userinfo, box }) => {
     setViewContentModal(!viewContentModal);
   };
   const handleVideoModal = () => {
-    setViewVideoModal(!viewVideoModal);
+    if (today === box.date) {
+      setViewVideoModal(!viewVideoModal);
+    }
   };
   const handleComplete = () => {
     setComplete(!isComplete);
@@ -75,6 +93,7 @@ const TodoBox = ({ userinfo, box }) => {
               handleVideoModal={handleVideoModal}
               selectedVideo={selectedVideo}
               box={box}
+              today={today}
             />
           )}
         </Card>
@@ -88,13 +107,14 @@ const TodoBox = ({ userinfo, box }) => {
           date={box.date}
         />
       )}
-      {viewVideoModal && (
+      {viewVideoModal ? (
         <ViewVideo
           handleModal={handleVideoModal}
           selectedVideo={selectedVideo}
           id={userinfo.id}
+          date={box.date}
         />
-      )}
+      ) : null}
     </div>
   );
 };
@@ -107,38 +127,44 @@ const TodoBoxPreview = ({
   handleComplete,
   handleVideoModal,
   box,
-}) => (
-  <div className="todo-box">
-    <Button
-      color="success"
-      onClick={(e) => {
-        axios
-          .post(
-            'http://localhost:3000/todaycomplete',
-            {
-              id: userinfo.id,
-              isComplete: true,
-            },
-            { withCredentials: true },
-          )
-          .then((result) => {
-            console.log(result);
-            handleComplete();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }}
-    >
-      check
-    </Button>
-    <Media
-      width="100%"
-      object
-      src={selectedVideo.snippet.thumbnails.medium.url}
-      alt="썸네일"
-      onClick={handleVideoModal}
-    />
-    <CardText>memoTitle: {box.memoTitle}</CardText>
-  </div>
-);
+  today,
+}) => {
+  return (
+    <div className="preview">
+      {today === box.date ? null : (
+        <div className="preview-cover">{box.date.slice(8, 10)}일에 만나요!</div>
+      )}
+      <Button
+        color="success"
+        onClick={(e) => {
+          axios
+            .post(
+              'http://localhost:3000/todaycomplete',
+              {
+                id: userinfo.id,
+                isComplete: true,
+              },
+              { withCredentials: true },
+            )
+            .then((result) => {
+              console.log(result);
+              handleComplete();
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }}
+      >
+        check
+      </Button>
+      <Media
+        width="100%"
+        object
+        src={selectedVideo.snippet.thumbnails.medium.url}
+        alt="썸네일"
+        onClick={handleVideoModal}
+      />
+      <CardText>memoTitle: {box.memoTitle}</CardText>
+    </div>
+  );
+};

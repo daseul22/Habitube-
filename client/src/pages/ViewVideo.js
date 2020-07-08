@@ -7,7 +7,7 @@ import '../etc/App.css';
 import YouTube from 'react-youtube';
 import { getMypage } from '../modules/mypage';
 
-const ViewVideo = ({ handleModal, selectedVideo, id }) => {
+const ViewVideo = ({ handleModal, selectedVideo, id, date }) => {
   const opts = {
     height: '720',
     width: '1180',
@@ -61,7 +61,6 @@ const ViewVideo = ({ handleModal, selectedVideo, id }) => {
             setText2(false);
             setTextContent(textVal);
             setTextTitle(titleVal);
-            dispatch(getMypage());
             axios
               .post(
                 'http://localhost:3000/mypage/selectvideo',
@@ -69,11 +68,13 @@ const ViewVideo = ({ handleModal, selectedVideo, id }) => {
                   id: id,
                   memoTitle: textTitle,
                   memoContent: textContent,
+                  date: date,
                 },
                 { withCredentials: true },
               )
               .then(() => {
                 console.log('입력');
+                dispatch(getMypage());
               })
               .catch((err) => {
                 console.log(err);
