@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter, Link } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormFeedback,
+} from 'reactstrap';
 import axios from 'axios';
 
 class Signup extends Component {
