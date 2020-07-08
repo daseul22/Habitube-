@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter, useHistory } from 'react-router-dom';
-import { Container, Button, Row, Col } from 'reactstrap';
-//co
+//container
 import TodoBoxContainer from './TodoBoxContainer';
 import Nav from './Nav';
-
+// modules
 import { getMypage } from '../modules/mypage';
+//css
+import { Container, Button, Row, Col } from 'reactstrap';
 import makeit from '../etc/img/26379-demo-files.json';
 import Lottie from 'react-lottie';
 

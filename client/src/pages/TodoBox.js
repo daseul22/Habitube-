@@ -1,24 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import {
-  Card,
-  Button,
-  CardTitle,
-  CardText,
-  Row,
-  Col,
-  Media,
-  Modal,
-  ModalBody,
-  ModalFooter,
-} from 'reactstrap';
+import { Card, Button, CardTitle, CardText, Col, Media } from 'reactstrap';
 import TodoBoxContent from './TodoBoxContent';
 import ViewVideo from './ViewVideo';
-import img2 from '../etc/img/img2.png';
 import '../etc/App.css';
 import { getvideoList } from '../modules/videolist';
 import { getMypage } from '../modules/mypage';
+import { todayComplete } from '../modules/todaycomplete';
 import animeition from '../etc/img/8251-complete.json';
 import Lottie from 'react-lottie';
 
@@ -27,7 +16,6 @@ import Lottie from 'react-lottie';
 // 영상설정하기 버튼 => 모달로 todoboxContent 띄우기
 // isComplete boxes에서 받아서 해야함.
 const TodoBox = ({ userinfo, box }) => {
-  const { data, doing, error } = useSelector((state) => state.videolist);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -98,7 +86,7 @@ const TodoBox = ({ userinfo, box }) => {
           <Button outline color="secondary" onClick={handleContentModal}>
             영상 설정하기
           </Button>
-          {isShowPreview && (
+          {box.youtubeInfo && (
             <TodoBoxPreview
               userinfo={userinfo}
               handleComplete={handleComplete}
@@ -145,7 +133,6 @@ const TodoBoxPreview = ({
   checkbtn,
 }) => {
   const dispatch = useDispatch();
-  console.log(box.youtubeInfo.snippet);
   const [completIcon, setCompletIcon] = useState(false);
   const handleCompletIcon = () => {
     setCompletIcon(true);
@@ -159,6 +146,7 @@ const TodoBoxPreview = ({
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
+
   return (
     <div className="preview">
       {today === box.date ? null : (
@@ -172,33 +160,38 @@ const TodoBoxPreview = ({
       <Button
         color="success"
         onClick={(e) => {
-          axios
-            .post(
-              'http://localhost:3000/mypage/todaycomplete',
-              {
-                id: userinfo.id,
-                isComplete: !box.isComplete,
-              },
-              { withCredentials: true },
-            )
-            .then((result) => {
-              console.log(result);
-              dispatch(getMypage());
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          dispatch(todayComplete());
+          dispatch(getMypage());
+          // axios
+          //   .post(
+          //     'http://localhost:3000/mypage/todaycomplete',
+          //     {
+          //       id: userinfo.id,
+          //       isComplete: !box.isComplete,
+          //     },
+          //     { withCredentials: true },
+          //   )
+          //   .then((result) => {
+          //     console.log(result);
+          //     dispatch(getMypage());
+          //   })
+          //   .catch((err) => {
+          //     console.log(err);
+          //   });
         }}
       >
         check
       </Button>
-      <Media
-        width="100%"
-        object
-        src={box.youtubeInfo.snippet.thumbnails.medium.url}
-        alt="썸네일"
-        onClick={handleVideoModal}
-      />
+      {console.log(box.youtubeInfo.snippet)}
+      {box.youtubeInfo && (
+        <Media
+          width="100%"
+          object
+          src={box.youtubeInfo.snippet.thumbnails.medium.url}
+          alt="썸네일"
+          onClick={handleVideoModal}
+        />
+      )}
       <CardText>{box.memoTitle}</CardText>
     </div>
   );

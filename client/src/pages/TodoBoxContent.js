@@ -60,10 +60,6 @@ const OneVideoLink = ({
       color="light"
       onClick={(e) => {
         console.log('clicked');
-        handleShowPreview();
-        handleModal();
-        handleselectedVideo(video);
-        dispatch(getMypage());
         axios
           .post(
             'http://localhost:3000/mypage/selectvideo',
@@ -75,12 +71,12 @@ const OneVideoLink = ({
             { withCredentials: true },
           )
           .then(() => {
-            //응답을 받고 여기가 실행이 안됨
+            dispatch(getMypage());
+            setTimeout(500);
             console.log('영상');
             handleShowPreview();
             handleModal();
             handleselectedVideo(video);
-            dispatch(getMypage());
           })
           .catch((err) => {
             console.log(err);
