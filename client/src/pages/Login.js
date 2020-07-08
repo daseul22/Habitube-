@@ -27,13 +27,6 @@ class Login extends Component {
     },
   };
 
-  // componentDidMount() {
-  //   this.setState({
-  //     isIdRemeber: true,
-  //     emailValue: 'localStorage.email',
-  //   });
-  // }
-
   handleInputValue = key => e => {
     this.setState({ [key]: e.target.value });
   };
@@ -45,7 +38,7 @@ class Login extends Component {
     localStorage.setItem('email', this.state.emailValue);
     if (!this.state.isIdRemeber) {
       localStorage.setItem('checkbox', !this.state.isIdRemeber);
-      console.log('true :', this.state.isIdRemeber);
+      console.log('true :', !this.state.isIdRemeber);
     } else {
       console.log('false :', this.state.isIdRemeber);
       localStorage.clear();
@@ -145,10 +138,6 @@ class Login extends Component {
           className="btn-lg btn-block mb-1"
           color="primary"
           onClick={() => {
-            // if (isIdRemeber && emailValue !== '') {
-            //   localStorage.email = emailValue;
-            //   localStorage.checkbox = isIdRemeber;
-            // }
             axios
               .post(
                 'http://localhost:3000/login',
@@ -176,9 +165,9 @@ class Login extends Component {
         <div className="text-center pt-3">
           회원가입이 안 되어있으면 회원가입 하세요
         </div>
-        <div className="text-center">
+        {/* <div className="text-center">
           <a href="/forgot-password">비밀번호를 잊어버렸어요</a>
-        </div>
+        </div> */}
       </Form>
     );
   }
