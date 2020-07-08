@@ -33,7 +33,7 @@ const TodoBox = ({ userinfo, box }) => {
   const [isShowPreview, setShowPreview] = useState(false);
   const [viewContentModal, setViewContentModal] = useState(false);
   const [viewVideoModal, setViewVideoModal] = useState(false);
-  const [today, setToday] = useState('2020-07-07 화');
+  const [today, setToday] = useState('');
 
   function dateFormat() {
     //['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -50,6 +50,15 @@ const TodoBox = ({ userinfo, box }) => {
     return dateString;
     // '2020-07-01 수'
   }
+  useEffect(() => {
+    setLoading(true);
+    setToday(dateFormat());
+    if (box.youtubeInfo) {
+      setShowPreview(true);
+    }
+    setLoading(false);
+  }, []);
+
   const handleContentModal = () => {
     // 패치
     if (!viewContentModal) {
