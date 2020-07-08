@@ -1,16 +1,28 @@
-import React from 'react';
-import { Nav, NavItem, NavLink, Progress, Row, Col } from 'reactstrap';
+import React, { useState } from 'react';
+import {
+  Nav,
+  NavItem,
+  NavLink,
+  Progress,
+  Row,
+  Col,
+  Toast,
+  ToastBody,
+  ToastHeader,
+} from 'reactstrap';
 import { useSelector } from 'react-redux';
 
 const Navi = ({ userinfo }) => {
   const progress = useSelector((state) => state.progress.data.progress);
+  const [popup, setPopup] = useState(false);
   return (
     <>
+      {popup && <ProgressPopup />}
       <Row className="mynav">
         <Col xs="8">
           <Nav>
             <NavItem>
-              <NavLink className="link" href="#">
+              <NavLink className="link" href="/">
                 Habitube 소개
               </NavLink>
             </NavItem>
@@ -26,7 +38,12 @@ const Navi = ({ userinfo }) => {
             </NavItem>
           </Nav>
         </Col>
-        <Col xs="4" className="my-progress-bar">
+        <Col
+          xs="4"
+          className="my-progress-bar"
+          onMouseEnter={() => setPopup(true)}
+          onMouseLeave={() => setPopup(false)}
+        >
           <Progress multi>
             <Progress animated bar color="success" value={progress} />
           </Progress>
@@ -38,3 +55,16 @@ const Navi = ({ userinfo }) => {
 };
 
 export default Navi;
+
+const ProgressPopup = () => {
+  const progress = useSelector((state) => state.progress.data.progress);
+
+  return (
+    <div className="mytoast">
+      <Toast>
+        <ToastHeader>달성률</ToastHeader>
+        <ToastBody>{progress}%</ToastBody>
+      </Toast>
+    </div>
+  );
+};
