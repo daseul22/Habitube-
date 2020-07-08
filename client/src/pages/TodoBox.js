@@ -160,6 +160,7 @@ const TodoBoxPreview = ({
       <Button
         color="success"
         onClick={(e) => {
+
           dispatch(todayComplete());
           dispatch(getMypage());
           // axios
@@ -178,6 +179,7 @@ const TodoBoxPreview = ({
           //   .catch((err) => {
           //     console.log(err);
           //   });
+
         }}
       >
         check
@@ -192,6 +194,7 @@ const TodoBoxPreview = ({
           onClick={handleVideoModal}
         />
       )}
+
       <CardText>{box.memoTitle}</CardText>
     </div>
   );
