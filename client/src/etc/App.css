@@ -9,22 +9,34 @@ body {
 }
 .login-form {
   width: 100%;
-  max-width: 330px;
-  padding: 15px;
+  max-width: 500px;
+  padding: 100px;
   margin: auto;
   height: 100%;
 }
 .signup-form {
   width: 100%;
-  max-width: 330px;
-  padding: 15px;
+  max-width: 500px;
+  padding: 100px;
   margin: auto;
   height: 100%;
 }
 .achivementgoal-form {
   width: 100%;
-  max-width: 400px;
-  padding: 15px;
+  max-width: 600px;
+  padding: 100px;
+  margin: auto;
+  height: 100%;
+}
+
+.error-form {
+  padding: 100px;
+  margin: auto;
+  height: 100%;
+}
+
+.complete-form {
+  padding: 100px;
   margin: auto;
   height: 100%;
 }
@@ -32,7 +44,7 @@ body {
 .achivementgoal-select {
   width: 100%;
   max-width: 500px;
-  padding: 15px;
+  padding: 10px;
   margin: auto;
   height: 100%;
 }

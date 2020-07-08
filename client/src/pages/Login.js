@@ -19,11 +19,37 @@ class Login extends Component {
   state = {
     emailValue: '',
     passwordValue: '',
+    validate: {
+      emailState: '',
+      passwordState: '',
+    },
   };
 
-  handleInputValue = (key) => (e) => {
+  handleInputValue = key => e => {
     this.setState({ [key]: e.target.value });
   };
+
+  validateEmail(e) {
+    const emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const { validate } = this.state;
+    if (emailRex.test(e.target.value)) {
+      validate.emailState = true;
+    } else {
+      validate.emailState = false;
+    }
+    this.setState({ validate });
+  }
+
+  validatePassword(e) {
+    const passwordRex = /^[A-Za-z0-9]{6,12}$/;
+    const { validate } = this.state;
+    if (passwordRex.test(e.target.value)) {
+      validate.passwordState = true;
+    } else {
+      validate.passwordState = false;
+    }
+    this.setState({ validate });
+  }
 
   render() {
     const { handleInputValue } = this;
@@ -39,16 +65,25 @@ class Login extends Component {
         <h1 className="text-center">
           <span className="font-weight-bold">Habitube</span>
         </h1>
+        <br></br>
+        <br></br>
         <FormGroup>
           <Label>Email</Label>
           <Input
-            invalid
-            type="emailValue"
-            placeholder="Email"
-            onChange={handleInputValue('emailValue')}
+            valid={this.state.validate.emailState === true}
+            invalid={this.state.validate.emailState === false}
+            type="email"
+            placeholder="email@email.com"
+            onChange={e => {
+              this.handleInputValue('email');
+              this.validateEmail(e);
+              this.setState({
+                emailValue: e.target.value,
+              });
+            }}
           />
-          <FormFeedback>이미 등록된 이메일에요!!</FormFeedback>
-          <FormText>이메일을 입력하세요.</FormText>
+          <FormFeedback valid>올바른 이메일 형식입니다.</FormFeedback>
+          <FormFeedback invalid>이메일 형식에 맞게 입력하시오.</FormFeedback>
           <FormGroup check inline>
             <Label check>
               <Input type="checkbox" /> email 기억
@@ -56,19 +91,27 @@ class Login extends Component {
           </FormGroup>
         </FormGroup>
         <FormGroup>
-          <Label>Password</Label>
+          <Label>비밀번호</Label>
           <Input
-            invalid
+            valid={this.state.validate.passwordState === true}
+            invalid={this.state.validate.passwordState === false}
             type="password"
             placeholder="Password"
             onChange={handleInputValue('passwordValue')}
+            onChange={e => {
+              this.handleInputValue('password');
+              this.validatePassword(e);
+              this.setState({
+                passwordValue: e.target.value,
+              });
+            }}
           />
-          <FormFeedback>숫자로 이루어진 비밀번호는 없습니다.</FormFeedback>
-          <FormText>비밀번호를 입력하세요.</FormText>
+          <FormFeedback valid>올바른 비밀번호 형식입니다.</FormFeedback>
+          <FormFeedback invalid>6글자 이상 입력하시오.</FormFeedback>
           <br></br>
         </FormGroup>
         <ButtonToggle
-          className="btn-lg btn-block"
+          className="btn-lg btn-block mb-1"
           color="primary"
           onClick={() => {
             axios
@@ -77,13 +120,13 @@ class Login extends Component {
                 { email: emailValue, password: passwordValue },
                 { withCredentials: true },
               )
-              .then((result) => {
+              .then(result => {
                 console.log(result.data.userInfo);
                 handleId(result.data.userInfo);
                 handleLogin();
                 this.props.history.push('/mypage');
               })
-              .catch((err) => {
+              .catch(err => {
                 console.log(err);
               });
           }}
@@ -103,7 +146,6 @@ class Login extends Component {
         </div>
       </Form>
     );
-    // <div className="App">login page입니다.</div>;
   }
 }
 export default withRouter(Login);
