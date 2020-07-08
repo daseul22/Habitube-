@@ -3,6 +3,12 @@
   font-family: 'Nanum Gothic', sans-serif;
   src: url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 }
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Pen+Script&display=swap');
+@font-face {
+  font-family: 'Nanum Myeongjo', serif;
+  font-family: 'Nanum Pen Script', cursive;
+  src: url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Pen+Script&display=swap');
+}
 body {
   font-family: 'Nanum Gothic';
   background-color: #fefefeef;
@@ -85,13 +91,58 @@ body {
   margin-right: 15px;
 }
 .mypage h2 {
+  font-family: 'Nanum Myeongjo';
   margin-left: 12px;
-  margin-top: 40px;
-  color: rgba(0, 0, 0, 0.562);
+  margin-top: 80px;
+  color: rgba(26, 10, 10, 0.616);
+  font-weight: 400;
+  font-size: 2rem;
 }
 .month {
   margin-top: 10px;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.76);
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.582);
   font-size: x-large;
+}
+.preview {
+  position: relative;
+}
+.preview-cover {
+  position: absolute;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%;
+  background-color: rgba(16, 61, 39, 0.6);
+  color: rgb(235, 235, 235);
+  text-align: center;
+  font-weight: 800;
+  line-height: 200px;
+}
+.link {
+  color: #1ab35fef;
+  font-weight: 700;
+}
+.my-progress-bar {
+  margin-top: 12px;
+}
+.smallbox-icon {
+  width: 5px;
+  height: 24px;
+  background-color: #1ab35fef;
+  float: left;
+  margin-top: 2px;
+  margin-right: 10px;
+}
+.mynav {
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.07);
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+}
+.font-icon {
+  color: #1ab35fef;
+  float: left;
+  margin-right: 10px;
+  margin-top: 1.5px;
 }

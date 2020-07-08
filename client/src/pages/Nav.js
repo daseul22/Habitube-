@@ -4,14 +4,18 @@ import { Nav, NavItem, NavLink, Progress, Row, Col } from 'reactstrap';
 const Navi = ({ userinfo }) => {
   return (
     <>
-      <Row>
+      <Row className="mynav">
         <Col xs="8">
           <Nav>
             <NavItem>
-              <NavLink href="#">Habitube 소개</NavLink>
+              <NavLink className="link" href="#">
+                Habitube 소개
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">취미 보러가기</NavLink>
+              <NavLink className="link" href="#">
+                취미 보러가기
+              </NavLink>
             </NavItem>
             <NavItem>
               <NavLink disabled href="#">
@@ -20,11 +24,13 @@ const Navi = ({ userinfo }) => {
             </NavItem>
           </Nav>
         </Col>
-        <Col xs="4">
-          <Progress color="warning" value="30" />
+        <Col xs="4" className="my-progress-bar">
+          <Progress multi>
+            <Progress animated bar color="success" value="30" />
+          </Progress>
         </Col>
+        <hr />
       </Row>
-      <hr />
     </>
   );
 };
