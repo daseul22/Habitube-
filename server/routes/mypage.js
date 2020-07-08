@@ -15,8 +15,8 @@ router.get('/getvideolist', mypageController.getvideolist.get);
 // * POST /mypage/selectvideo
 router.post('/selectvideo', mypageController.selectvideo.post);
 
-// * POST /mypage/todaycomplete
-router.post('/todaycomplete', mypageController.todaycomplete.post);
+// * GET /mypage/todaycomplete
+router.get('/todaycomplete', mypageController.todaycomplete.get);
 
 // * GET /mypage/getvideolist
 router.get('/progress', mypageController.progress.get);
