@@ -5,6 +5,8 @@ import Mypage from './pages/Mypage';
 import AchievementGoal from './pages/AchievementGoal';
 import Signup from './pages/Signup';
 import { is } from 'immutable';
+import Complete from './pages/Complete';
+import ErrorPage from './pages/ErrorPage';
 // import { Login } from './pages';
 
 class App extends Component {
@@ -21,14 +23,14 @@ class App extends Component {
     term: 0,
   };
 
-  handleId = (value) => {
+  handleId = value => {
     this.setState({ userinfo: value });
   };
-  setTerm = (value) => {
+  setTerm = value => {
     this.setState({ term: value });
   };
 
-  getCalendar = (value) => {
+  getCalendar = value => {
     this.setState({ calendar: value });
   };
   handleLogin = () => {
@@ -40,6 +42,8 @@ class App extends Component {
     return (
       <div>
         <Switch>
+          <Route path="/complete" render={() => <Complete />} />
+
           <Route
             exact
             path="/login"

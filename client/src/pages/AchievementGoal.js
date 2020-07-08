@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {
   Form,
   FormGroup,
@@ -45,7 +45,7 @@ class AchievementGoal extends Component {
     this.setState({ selectedDay: [...this.state.cSelected] });
   }
 
-  handleInputValue = (key) => (e) => {
+  handleInputValue = key => e => {
     this.setState({ [key]: e.target.value });
   };
 
@@ -56,7 +56,7 @@ class AchievementGoal extends Component {
     return (
       <Form inline className="achivementgoal-form">
         <h1>AchievementGoal</h1>
-        <FormGroup>
+        <FormGroup className="mt-5">
           <h5>주제를 알려주세요</h5>
           <Input
             type="keyword"
@@ -157,6 +157,7 @@ class AchievementGoal extends Component {
         </p>
         <Button
           color="primary"
+          className="btn-block mb-1"
           onClick={() => {
             axios
               .post(
@@ -170,12 +171,12 @@ class AchievementGoal extends Component {
                 },
                 { withCredentials: true },
               )
-              .then((result) => {
+              .then(result => {
                 console.log(result);
 
                 this.props.history.push('/mypage');
               })
-              .catch((err) => {
+              .catch(err => {
                 console.log(err);
               });
           }}
