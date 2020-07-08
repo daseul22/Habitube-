@@ -69,7 +69,7 @@ const OneVideoLink = ({
             'http://localhost:3000/mypage/selectvideo',
             {
               id: id,
-              selectedVideo: { kind: 'youtube#video', videoId: 'ULE3hvuIt4E' },
+              selectedVideo: video,
               date: date,
             },
             { withCredentials: true },
