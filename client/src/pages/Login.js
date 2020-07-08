@@ -1,32 +1,55 @@
 import React, { Component } from 'react';
 
-import { Redirect, Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import {
-  Button,
   Form,
   FormGroup,
   Label,
   Input,
   FormFeedback,
-  FormText,
   ButtonToggle,
   Media,
 } from 'reactstrap';
 import '../etc/App.css';
 import axios from 'axios';
+// import { is } from 'immutable';
 
 class Login extends Component {
   state = {
-    emailValue: '',
+    emailValue: localStorage.getItem('checkbox')
+      ? localStorage.getItem('email')
+      : '',
     passwordValue: '',
+    isIdRemeber: localStorage.getItem('checkbox') ? true : false,
     validate: {
       emailState: '',
       passwordState: '',
     },
   };
 
+  // componentDidMount() {
+  //   this.setState({
+  //     isIdRemeber: true,
+  //     emailValue: 'localStorage.email',
+  //   });
+  // }
+
   handleInputValue = key => e => {
     this.setState({ [key]: e.target.value });
+  };
+
+  onChangeCheckbox = e => {
+    this.setState({
+      isIdRemeber: e.target.checked,
+    });
+    localStorage.setItem('email', this.state.emailValue);
+    if (!this.state.isIdRemeber) {
+      localStorage.setItem('checkbox', !this.state.isIdRemeber);
+      console.log('true :', this.state.isIdRemeber);
+    } else {
+      console.log('false :', this.state.isIdRemeber);
+      localStorage.clear();
+    }
   };
 
   validateEmail(e) {
@@ -53,7 +76,7 @@ class Login extends Component {
 
   render() {
     const { handleInputValue } = this;
-    const { emailValue, passwordValue } = this.state;
+    const { emailValue, passwordValue, isIdRemeber } = this.state;
     const { handleId, handleLogin } = this.props;
 
     // login 이 되어있으면 mypage로 이동 , 안 되어 있으면 다시 login 으로 이동
@@ -74,8 +97,10 @@ class Login extends Component {
             invalid={this.state.validate.emailState === false}
             type="email"
             placeholder="email@email.com"
+            defaultValue={this.state.emailValue}
             onChange={e => {
               this.handleInputValue('email');
+              console.log(this.state.emailValue);
               this.validateEmail(e);
               this.setState({
                 emailValue: e.target.value,
@@ -86,7 +111,13 @@ class Login extends Component {
           <FormFeedback invalid>이메일 형식에 맞게 입력하시오.</FormFeedback>
           <FormGroup check inline>
             <Label check>
-              <Input type="checkbox" /> email 기억
+              <Input
+                type="checkbox"
+                checked={isIdRemeber}
+                name={isIdRemeber}
+                onChange={this.onChangeCheckbox}
+              />{' '}
+              email 기억
             </Label>
           </FormGroup>
         </FormGroup>
@@ -114,6 +145,10 @@ class Login extends Component {
           className="btn-lg btn-block mb-1"
           color="primary"
           onClick={() => {
+            // if (isIdRemeber && emailValue !== '') {
+            //   localStorage.email = emailValue;
+            //   localStorage.checkbox = isIdRemeber;
+            // }
             axios
               .post(
                 'http://localhost:3000/login',
