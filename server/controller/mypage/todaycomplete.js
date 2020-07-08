@@ -27,7 +27,7 @@ module.exports = {
         },
         attributes: ['isComplete'],
       })
-      .then((isComplete) => {
+      .then(({ isComplete }) => {
         todobox
           .update(
             {
