@@ -105,7 +105,6 @@ class Signup extends Component {
         <FormGroup>
           <Label>이름</Label>
           <Input
-            invalid
             type="name"
             placeholder="이름을 입력하세요"
             onChange={this.handleInputValue('username')}
