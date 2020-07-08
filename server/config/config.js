@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     username: 'root',
-    password: 'darae',
+    password: 'root',
     database: 'habitube',
     host: 'localhost',
     dialect: 'mysql',
