@@ -9,7 +9,8 @@ import { getMypage } from '../modules/mypage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStickyNote } from '@fortawesome/free-solid-svg-icons';
 
-const ViewVideo = ({ handleModal, selectedVideo, id, date, youtube }) => {
+// 영상 재생, 메모 입력 컴포넌트
+const ViewVideo = ({ handleModal, id, date, youtube }) => {
   const opts = {
     height: '720',
     width: '1180',

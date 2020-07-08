@@ -7,55 +7,27 @@ import ViewVideo from './ViewVideo';
 import '../etc/App.css';
 import { getvideoList } from '../modules/videolist';
 import { getMypage } from '../modules/mypage';
-import { todayComplete } from '../modules/todaycomplete';
+import { getProgress } from '../modules/progress';
+//import { todayComplete } from '../modules/todaycomplete';
 import animeition from '../etc/img/8251-complete.json';
 import Lottie from 'react-lottie';
+import { fromJS } from 'immutable';
 
-// todobox에서 gettodobox 요청을 또보내야하는지??
-// todobox에서 섬네일누르면 모달로 영상재생화면 띄우기
-// 영상설정하기 버튼 => 모달로 todoboxContent 띄우기
-// isComplete boxes에서 받아서 해야함.
+// 박스 한칸. 영상 목록, 영상 보기 컴포넌트로 접근이 가능하다.
 const TodoBox = ({ userinfo, box }) => {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-
-  const [isComplete, setComplete] = useState(false);
-  const [selectedVideo, setSelectedVideo] = useState({});
-  const [isShowPreview, setShowPreview] = useState(false);
   const [viewContentModal, setViewContentModal] = useState(false);
   const [viewVideoModal, setViewVideoModal] = useState(false);
   const [today, setToday] = useState('');
 
-  function dateFormat() {
-    //['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    let year = new Date().getFullYear();
-    let month = new Date().getMonth() + 1;
-    let date = new Date().getDate();
-    let day = new Date().getDay();
-    let dayTable = ['일', '월', '화', '수', '목', '금', '토', '일'];
-    month = '0' + month;
-    date = '0' + date;
-    let dateString = `${year}-${month.slice(-2)}-${date.slice(-2)} ${
-      dayTable[day]
-    }`;
-    return dateString;
-    // '2020-07-01 수'
-  }
   useEffect(() => {
-    setLoading(true);
     setToday(dateFormat());
-    if (box.youtubeInfo) {
-      setShowPreview(true);
-    }
-    setLoading(false);
   }, []);
 
   const handleContentModal = () => {
     // 패치
     if (!viewContentModal) {
-      setLoading(true);
       dispatch(getvideoList());
-      setLoading(false);
     }
     setViewContentModal(!viewContentModal);
   };
@@ -63,16 +35,6 @@ const TodoBox = ({ userinfo, box }) => {
     if (today === box.date) {
       setViewVideoModal(!viewVideoModal);
     }
-  };
-  const handleComplete = () => {
-    setComplete(!isComplete);
-  };
-
-  const handleShowPreview = () => {
-    setShowPreview(true);
-  };
-  const handleselectedVideo = (value) => {
-    setSelectedVideo(value);
   };
 
   // boxes 정보가 없으면 div 숨기기
@@ -89,12 +51,9 @@ const TodoBox = ({ userinfo, box }) => {
           {box.youtubeInfo && (
             <TodoBoxPreview
               userinfo={userinfo}
-              handleComplete={handleComplete}
               handleVideoModal={handleVideoModal}
-              selectedVideo={selectedVideo}
               box={box}
               today={today}
-              checkbtn={isComplete}
             />
           )}
         </Card>
@@ -103,15 +62,12 @@ const TodoBox = ({ userinfo, box }) => {
         <TodoBoxContent
           handleModal={handleContentModal}
           id={userinfo.id}
-          handleShowPreview={handleShowPreview}
-          handleselectedVideo={handleselectedVideo}
           date={box.date}
         />
       )}
       {viewVideoModal ? (
         <ViewVideo
           handleModal={handleVideoModal}
-          selectedVideo={selectedVideo}
           id={userinfo.id}
           date={box.date}
           youtube={box.youtubeInfo}
@@ -122,22 +78,9 @@ const TodoBox = ({ userinfo, box }) => {
 };
 export default TodoBox;
 
-//selectedVideo에서 정보 받아와 이미지, 메모 렌더
-const TodoBoxPreview = ({
-  selectedVideo,
-  userinfo,
-  handleComplete,
-  handleVideoModal,
-  box,
-  today,
-  checkbtn,
-}) => {
+// 달력 칸에 보이는 미리보기 정보. 섬네일, 메모제목, 체크 버튼이 포함되어있다.
+const TodoBoxPreview = ({ handleVideoModal, box, today }) => {
   const dispatch = useDispatch();
-  const [completIcon, setCompletIcon] = useState(false);
-  const handleCompletIcon = () => {
-    setCompletIcon(true);
-    setTimeout(setCompletIcon(false), 2000);
-  };
   const defaultOptions = {
     loop: false,
     autoplay: true,
@@ -160,31 +103,24 @@ const TodoBoxPreview = ({
       <Button
         color="success"
         onClick={(e) => {
-
-          dispatch(todayComplete());
-          dispatch(getMypage());
-          // axios
-          //   .post(
-          //     'http://localhost:3000/mypage/todaycomplete',
-          //     {
-          //       id: userinfo.id,
-          //       isComplete: !box.isComplete,
-          //     },
-          //     { withCredentials: true },
-          //   )
-          //   .then((result) => {
-          //     console.log(result);
-          //     dispatch(getMypage());
-          //   })
-          //   .catch((err) => {
-          //     console.log(err);
-          //   });
-
+          // dispatch(todayComplete());
+          // dispatch(getMypage());
+          axios
+            .get('http://localhost:3000/mypage/todaycomplete', {
+              withCredentials: true,
+            })
+            .then((result) => {
+              console.log(result);
+              dispatch(getMypage());
+              dispatch(getProgress());
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }}
       >
         check
       </Button>
-      {console.log(box.youtubeInfo.snippet)}
       {box.youtubeInfo && (
         <Media
           width="100%"
@@ -194,8 +130,23 @@ const TodoBoxPreview = ({
           onClick={handleVideoModal}
         />
       )}
-
       <CardText>{box.memoTitle}</CardText>
     </div>
   );
 };
+
+function dateFormat() {
+  //['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  let year = new Date().getFullYear();
+  let month = new Date().getMonth() + 1;
+  let date = new Date().getDate();
+  let day = new Date().getDay();
+  let dayTable = ['일', '월', '화', '수', '목', '금', '토', '일'];
+  month = '0' + month;
+  date = '0' + date;
+  let dateString = `${year}-${month.slice(-2)}-${date.slice(-2)} ${
+    dayTable[day]
+  }`;
+  return dateString;
+  // '2020-07-01 수'
+}

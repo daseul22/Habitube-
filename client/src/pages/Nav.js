@@ -1,7 +1,9 @@
 import React from 'react';
 import { Nav, NavItem, NavLink, Progress, Row, Col } from 'reactstrap';
+import { useSelector } from 'react-redux';
 
 const Navi = ({ userinfo }) => {
+  const progress = useSelector((state) => state.progress.data.progress);
   return (
     <>
       <Row className="mynav">
@@ -26,7 +28,7 @@ const Navi = ({ userinfo }) => {
         </Col>
         <Col xs="4" className="my-progress-bar">
           <Progress multi>
-            <Progress animated bar color="success" value="30" />
+            <Progress animated bar color="success" value={progress} />
           </Progress>
         </Col>
         <hr />
