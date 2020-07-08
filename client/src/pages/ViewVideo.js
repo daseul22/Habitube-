@@ -6,8 +6,10 @@ import axios from 'axios';
 import '../etc/App.css';
 import YouTube from 'react-youtube';
 import { getMypage } from '../modules/mypage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStickyNote } from '@fortawesome/free-solid-svg-icons';
 
-const ViewVideo = ({ handleModal, selectedVideo, id, date }) => {
+const ViewVideo = ({ handleModal, selectedVideo, id, date, youtube }) => {
   const opts = {
     height: '720',
     width: '1180',
@@ -22,12 +24,16 @@ const ViewVideo = ({ handleModal, selectedVideo, id, date }) => {
   const [textVal, setTextVal] = useState('');
   const [titleVal, setTitleVal] = useState('');
   const dispatch = useDispatch();
-
+  //console.log(youtube);
   return (
     <div className="myModal">
       <Card className="mymodal-content">
         <h1>ViewVideo</h1>
-        <YouTube videoId={selectedVideo.id.videoId} opts={opts} />
+        <YouTube videoId={youtube.id.videoId} opts={opts} />
+        <div>
+          <FontAwesomeIcon icon={faStickyNote} className="font-icon" />
+          <p>메모를 남겨주세요</p>
+        </div>
         {!text2 && (
           <Alert color="light" onClick={() => setText2(true)}>
             {' '}
@@ -57,8 +63,6 @@ const ViewVideo = ({ handleModal, selectedVideo, id, date }) => {
           outline
           color="secondary"
           onClick={() => {
-            setText(false);
-            setText2(false);
             setTextContent(textVal);
             setTextTitle(titleVal);
             axios
@@ -66,8 +70,8 @@ const ViewVideo = ({ handleModal, selectedVideo, id, date }) => {
                 'http://localhost:3000/mypage/selectvideo',
                 {
                   id: id,
-                  memoTitle: textTitle,
-                  memoContent: textContent,
+                  memoTitle: titleVal,
+                  memoContent: textVal,
                   date: date,
                 },
                 { withCredentials: true },
@@ -79,6 +83,8 @@ const ViewVideo = ({ handleModal, selectedVideo, id, date }) => {
               .catch((err) => {
                 console.log(err);
               });
+            setText(false);
+            setText2(false);
           }}
         >
           입력

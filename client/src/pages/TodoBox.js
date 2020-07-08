@@ -18,6 +18,9 @@ import ViewVideo from './ViewVideo';
 import img2 from '../etc/img/img2.png';
 import '../etc/App.css';
 import { getvideoList } from '../modules/videolist';
+import { getMypage } from '../modules/mypage';
+import animeition from '../etc/img/8251-complete.json';
+import Lottie from 'react-lottie';
 
 // todobox에서 gettodobox 요청을 또보내야하는지??
 // todobox에서 섬네일누르면 모달로 영상재생화면 띄우기
@@ -33,7 +36,7 @@ const TodoBox = ({ userinfo, box }) => {
   const [isShowPreview, setShowPreview] = useState(false);
   const [viewContentModal, setViewContentModal] = useState(false);
   const [viewVideoModal, setViewVideoModal] = useState(false);
-  const [today, setToday] = useState('2020-07-07 화');
+  const [today, setToday] = useState('');
 
   function dateFormat() {
     //['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -50,6 +53,15 @@ const TodoBox = ({ userinfo, box }) => {
     return dateString;
     // '2020-07-01 수'
   }
+  useEffect(() => {
+    setLoading(true);
+    setToday(dateFormat());
+    if (box.youtubeInfo) {
+      setShowPreview(true);
+    }
+    setLoading(false);
+  }, []);
+
   const handleContentModal = () => {
     // 패치
     if (!viewContentModal) {
@@ -94,6 +106,7 @@ const TodoBox = ({ userinfo, box }) => {
               selectedVideo={selectedVideo}
               box={box}
               today={today}
+              checkbtn={isComplete}
             />
           )}
         </Card>
@@ -113,6 +126,7 @@ const TodoBox = ({ userinfo, box }) => {
           selectedVideo={selectedVideo}
           id={userinfo.id}
           date={box.date}
+          youtube={box.youtubeInfo}
         />
       ) : null}
     </div>
@@ -128,27 +142,48 @@ const TodoBoxPreview = ({
   handleVideoModal,
   box,
   today,
+  checkbtn,
 }) => {
+  const dispatch = useDispatch();
+  console.log(box.youtubeInfo.snippet);
+  const [completIcon, setCompletIcon] = useState(false);
+  const handleCompletIcon = () => {
+    setCompletIcon(true);
+    setTimeout(setCompletIcon(false), 2000);
+  };
+  const defaultOptions = {
+    loop: false,
+    autoplay: true,
+    animationData: animeition,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
   return (
     <div className="preview">
       {today === box.date ? null : (
         <div className="preview-cover">{box.date.slice(8, 10)}일에 만나요!</div>
+      )}
+      {box.isComplete && (
+        <div className="complet-ani">
+          <Lottie options={defaultOptions} />
+        </div>
       )}
       <Button
         color="success"
         onClick={(e) => {
           axios
             .post(
-              'http://localhost:3000/todaycomplete',
+              'http://localhost:3000/mypage/todaycomplete',
               {
                 id: userinfo.id,
-                isComplete: true,
+                isComplete: !box.isComplete,
               },
               { withCredentials: true },
             )
             .then((result) => {
               console.log(result);
-              handleComplete();
+              dispatch(getMypage());
             })
             .catch((err) => {
               console.log(err);
@@ -160,11 +195,11 @@ const TodoBoxPreview = ({
       <Media
         width="100%"
         object
-        src={selectedVideo.snippet.thumbnails.medium.url}
+        src={box.youtubeInfo.snippet.thumbnails.medium.url}
         alt="썸네일"
         onClick={handleVideoModal}
       />
-      <CardText>memoTitle: {box.memoTitle}</CardText>
+      <CardText>{box.memoTitle}</CardText>
     </div>
   );
 };
