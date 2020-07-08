@@ -29,7 +29,7 @@ const ViewVideo = ({ handleModal, selectedVideo, id, date, youtube }) => {
     <div className="myModal">
       <Card className="mymodal-content">
         <h1>ViewVideo</h1>
-        <YouTube videoId={youtube.id.videoId} opts={opts} />
+        <YouTube videoId={youtube.id} opts={opts} />
         <div>
           <FontAwesomeIcon icon={faStickyNote} className="font-icon" />
           <p>메모를 남겨주세요</p>
