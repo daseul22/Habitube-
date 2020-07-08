@@ -6,7 +6,8 @@ import { Badge, Row, ButtonGroup, Button } from 'reactstrap';
 import '../etc/App.css';
 import animeition from '../etc/img/25920-questions.json';
 import Lottie from 'react-lottie';
-let arr = [1, 2, 3, 4];
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 // 처음 가입후 정보입력 => 달력: calendar
 // 정보 불러오기 => 달력 + todobox 정보: boxes
@@ -76,11 +77,12 @@ const Page = ({ boxes, userinfo }) => {
   return (
     <div className="container">
       <h3 className="month">
-        <div key={boxes[0].date.slice(5, 7)}>{boxes[0].date.slice(5, 7)}월</div>
+        {/* <div className="smallbox-icon"></div> */}
+        <FontAwesomeIcon icon={faCalendarAlt} className="font-icon" />
+        <p key={boxes[0].date.slice(5, 7)}>{boxes[0].date.slice(5, 7)}월</p>
       </h3>
       <Row xs="4">
         {boxes.map((inbox, i) => {
-          console.log(inbox);
           return (
             <TodoBox
               key={inbox.date.toString()}

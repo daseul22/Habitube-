@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       memoTitle: DataTypes.STRING,
       memoContent: DataTypes.STRING,
-      youtubeInfo: DataTypes.STRING,
+      youtubeInfo: DataTypes.STRING(10000),
       // isComplete: DataTypes.BOOLEAN,
       isComplete: {
         type: DataTypes.BOOLEAN,
