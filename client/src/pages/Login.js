@@ -27,11 +27,11 @@ class Login extends Component {
     },
   };
 
-  handleInputValue = key => e => {
+  handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
 
-  onChangeCheckbox = e => {
+  onChangeCheckbox = (e) => {
     this.setState({
       isIdRemeber: e.target.checked,
     });
@@ -91,9 +91,8 @@ class Login extends Component {
             type="email"
             placeholder="email@email.com"
             defaultValue={this.state.emailValue}
-            onChange={e => {
+            onChange={(e) => {
               this.handleInputValue('email');
-              console.log(this.state.emailValue);
               this.validateEmail(e);
               this.setState({
                 emailValue: e.target.value,
@@ -122,7 +121,7 @@ class Login extends Component {
             type="password"
             placeholder="Password"
             onChange={handleInputValue('passwordValue')}
-            onChange={e => {
+            onChange={(e) => {
               this.handleInputValue('password');
               this.validatePassword(e);
               this.setState({
@@ -144,13 +143,13 @@ class Login extends Component {
                 { email: emailValue, password: passwordValue },
                 { withCredentials: true },
               )
-              .then(result => {
+              .then((result) => {
                 console.log(result.data.userInfo);
                 handleId(result.data.userInfo);
                 handleLogin();
                 this.props.history.push('/mypage');
               })
-              .catch(err => {
+              .catch((err) => {
                 console.log(err);
               });
           }}

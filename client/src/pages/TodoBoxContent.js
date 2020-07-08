@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Alert, Button } from 'reactstrap';
 import { Card } from 'reactstrap';
 import axios from 'axios';
-import img2 from '../etc/img/img2.png';
-import img3 from '../etc/img/img3.png';
-import img4 from '../etc/img/img4.png';
 import { getMypage } from '../modules/mypage';
 
-const TodoBoxContent = ({
-  handleModal,
-  handleShowPreview,
-  handleselectedVideo,
-  id,
-  date,
-}) => {
+// 영상정보를 불러와서 목록으로 보여준다.
+const TodoBoxContent = ({ handleModal, id, date }) => {
   const { data, doing, error } = useSelector((state) => state.videolist);
-  // videoList 길이만큼 링크를 띄우면됨.
-  // 1. getvideolist => 동영상 리스트 받아오기
-  // 2. selectedvideo => 동영상 선택하기 => 동영상 정보를 다시 받아와야함 => mypage 요청
-
   return (
     <div className="myModal">
       <Card className="mymodal-content">
@@ -31,14 +19,11 @@ const TodoBoxContent = ({
               key={'OneVideoLink' + i}
               video={video}
               handleModal={handleModal}
-              handleShowPreview={handleShowPreview}
-              handleselectedVideo={handleselectedVideo}
               id={id}
               date={date}
             />
           );
         })}
-
         <Button onClick={handleModal}>x</Button>
       </Card>
     </div>
@@ -46,14 +31,8 @@ const TodoBoxContent = ({
 };
 export default TodoBoxContent;
 
-const OneVideoLink = ({
-  handleModal,
-  handleShowPreview,
-  handleselectedVideo,
-  video,
-  id,
-  date,
-}) => {
+// 목록내 영상링크 한줄
+const OneVideoLink = ({ handleModal, video, id, date }) => {
   const dispatch = useDispatch();
   return (
     <Alert
@@ -72,11 +51,8 @@ const OneVideoLink = ({
           )
           .then(() => {
             dispatch(getMypage());
-            setTimeout(500);
             console.log('영상');
-            handleShowPreview();
             handleModal();
-            handleselectedVideo(video);
           })
           .catch((err) => {
             console.log(err);
