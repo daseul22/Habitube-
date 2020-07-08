@@ -6,7 +6,7 @@ module.exports = {
     todobox
       .update(
         {
-          youtubeInfo: JSON.stringify(selectedVideo),
+          youtubeInfo: selectedVideo,
           memoTitle: memoTitle,
           memoContent: memoContent,
         },
