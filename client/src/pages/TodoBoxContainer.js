@@ -15,16 +15,17 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 // 페이지 빈공간에 데이터없음 표시
 const TodoBoxContainer = ({ boxes, userinfo }) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [maxPage, setMaxPage] = useState(3);
+  const [maxPage, setMaxPage] = useState(4);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(true);
-    //setMaxPage(Object.keys(boxes).length);
+    // setMaxPage(Object.keys(boxes).length + 1);
     setLoading(false);
   }, []);
-
+  console.log(Object.keys(boxes));
+  let a = Object.keys(boxes).length;
   return (
     // 날 => 월로 환산하는데, 이번달 다음달을 어떻게 구분하지?
     // 무한 스크롤링, 날짜 이용해서 구획 주기 방법 고안
@@ -47,6 +48,7 @@ const TodoBoxContainer = ({ boxes, userinfo }) => {
           onClick={() => {
             setCurrentPage(currentPage + 1);
             dispatch(getMypage());
+            setMaxPage(a);
           }}
         >
           다음달
@@ -66,7 +68,7 @@ const TodoBoxContainer = ({ boxes, userinfo }) => {
           );
         }
       })}
-      {currentPage < 0 || currentPage > maxPage ? <NoData /> : null}
+      {currentPage < 0 || currentPage >= maxPage ? <NoData /> : null}
     </>
   );
 };
@@ -76,11 +78,11 @@ export default TodoBoxContainer;
 const Page = ({ boxes, userinfo }) => {
   return (
     <div className="container">
-      <h3 className="month">
+      <div className="month">
         {/* <div className="smallbox-icon"></div> */}
         <FontAwesomeIcon icon={faCalendarAlt} className="font-icon" />
         <p key={boxes[0].date.slice(5, 7)}>{boxes[0].date.slice(5, 7)}월</p>
-      </h3>
+      </div>
       <Row xs="4">
         {boxes.map((inbox, i) => {
           return (

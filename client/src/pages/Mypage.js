@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Redirect,
-  withRouter,
-  Switch,
-  Route,
-  useHistory,
-} from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
+import { Container, Button, Row, Col } from 'reactstrap';
+//co
 import TodoBoxContainer from './TodoBoxContainer';
 import Nav from './Nav';
-import axios from 'axios';
-import { Container, Button, Row, Col } from 'reactstrap';
-import { getMypage } from '../modules/mypage';
-import { get } from 'immutable';
-import makeit from '../etc/img/26379-demo-files.json';
 
+import { getMypage } from '../modules/mypage';
+import makeit from '../etc/img/26379-demo-files.json';
 import Lottie from 'react-lottie';
 
 // 마이페이지에서 componentDidMount에서 axios하지말고 수정이 필요함
