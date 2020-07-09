@@ -71,6 +71,8 @@ const TodoBox = ({ userinfo, box }) => {
           id={userinfo.id}
           date={box.date}
           youtube={box.youtubeInfo}
+          memoContent={box.memoContent}
+          memoTitle={box.memoTitle}
         />
       ) : null}
     </div>

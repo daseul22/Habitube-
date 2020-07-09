@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Alert, Button, Input } from 'reactstrap';
 import { Card } from 'reactstrap';
@@ -10,7 +10,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStickyNote } from '@fortawesome/free-solid-svg-icons';
 
 // 영상 재생, 메모 입력 컴포넌트
-const ViewVideo = ({ handleModal, id, date, youtube }) => {
+const ViewVideo = ({
+  handleModal,
+  id,
+  date,
+  youtube,
+  memoContent,
+  memoTitle,
+}) => {
   const opts = {
     height: '720',
     width: '1180',
@@ -18,13 +25,21 @@ const ViewVideo = ({ handleModal, id, date, youtube }) => {
       autoplay: 1,
     },
   };
-  const [text, setText] = useState(false);
-  const [text2, setText2] = useState(false);
+
+  const [text, setText] = useState(true);
+  const [text2, setText2] = useState(true);
   const [textContent, setTextContent] = useState('메모를 입력해주세요');
   const [textTitle, setTextTitle] = useState('제목을 입력해주세요');
   const [textVal, setTextVal] = useState('');
   const [titleVal, setTitleVal] = useState('');
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (memoContent || memoTitle) {
+      setText(false);
+      setText2(false);
+    }
+  });
   //console.log(youtube);
   return (
     <div className="myModal">
@@ -38,7 +53,7 @@ const ViewVideo = ({ handleModal, id, date, youtube }) => {
         {!text2 && (
           <Alert color="light" onClick={() => setText2(true)}>
             {' '}
-            {textTitle}
+            {memoTitle}
           </Alert>
         )}
         {text2 && (
@@ -51,7 +66,7 @@ const ViewVideo = ({ handleModal, id, date, youtube }) => {
         {!text && (
           <Alert color="light" onClick={() => setText(true)}>
             {' '}
-            {textContent}
+            {memoContent}
           </Alert>
         )}
         {text && (
@@ -79,13 +94,14 @@ const ViewVideo = ({ handleModal, id, date, youtube }) => {
               )
               .then(() => {
                 console.log('입력');
+
                 dispatch(getMypage());
+                setText(false);
+                setText2(false);
               })
               .catch((err) => {
                 console.log(err);
               });
-            setText(false);
-            setText2(false);
           }}
         >
           입력
