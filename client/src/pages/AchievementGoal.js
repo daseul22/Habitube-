@@ -159,26 +159,30 @@ class AchievementGoal extends Component {
           color="primary"
           className="btn-block mb-1"
           onClick={() => {
-            axios
-              .post(
-                'http://localhost:3000/mypage/goal',
-                {
-                  id: userinfo.id,
-                  startDate: +startDay,
-                  weekly: selectedDay,
-                  keyword: keyword,
-                  deadLine: term * 30,
-                },
-                { withCredentials: true },
-              )
-              .then(result => {
-                console.log(result);
+            if (this.state.keyword === '') {
+              alert('keyword 를 입력해주세요.');
+            } else {
+              axios
+                .post(
+                  'http://localhost:3000/mypage/goal',
+                  {
+                    id: userinfo.id,
+                    startDate: +startDay,
+                    weekly: selectedDay,
+                    keyword: keyword,
+                    deadLine: term * 30,
+                  },
+                  { withCredentials: true },
+                )
+                .then(result => {
+                  console.log(result);
 
-                this.props.history.push('/mypage');
-              })
-              .catch(err => {
-                console.log(err);
-              });
+                  this.props.history.push('/mypage');
+                })
+                .catch(err => {
+                  console.log(err);
+                });
+            }
           }}
         >
           목표 제출하기
