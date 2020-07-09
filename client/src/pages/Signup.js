@@ -135,9 +135,6 @@ class Signup extends Component {
                 .catch(err => {
                   console.log(err);
                 });
-
-              // alert('이미등록된 이메일입니다.');
-              //
             }}
             className="btn-lg btn-block"
             color="primary"
@@ -147,15 +144,8 @@ class Signup extends Component {
           </Button>
         </Link>
       </Form>
-      // signup -> onclick =>
     );
   }
 }
 
 export default withRouter(Signup);
-
-/* 
-1.acivementgoal 에서 mypage로 이동
-2.state값들 db에 전달
-
-*/
