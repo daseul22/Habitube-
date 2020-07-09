@@ -45,13 +45,13 @@ class AchievementGoal extends Component {
     this.setState({ selectedDay: [...this.state.cSelected] });
   }
 
-  handleInputValue = key => e => {
+  handleInputValue = (key) => (e) => {
     this.setState({ [key]: e.target.value });
   };
 
   render() {
     const { keyword, startDay, term, selectedDay, cSelected } = this.state;
-    const { userinfo, getCalendar } = this.props;
+    const { userinfo, handleId } = this.props;
 
     return (
       <Form inline className="achivementgoal-form">
@@ -174,12 +174,12 @@ class AchievementGoal extends Component {
                   },
                   { withCredentials: true },
                 )
-                .then(result => {
+                .then((result) => {
                   console.log(result);
-
+                  handleId({ keyword: keyword });
                   this.props.history.push('/mypage');
                 })
-                .catch(err => {
+                .catch((err) => {
                   console.log(err);
                 });
             }
