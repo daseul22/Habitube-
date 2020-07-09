@@ -25,7 +25,15 @@ class App extends Component {
   };
 
   handleId = (value) => {
-    this.setState({ userinfo: value });
+    this.setState((prev) => ({
+      userinfo: {
+        ...prev.userinfo,
+        username: value.username,
+        email: value.email,
+        id: value.id,
+        keyword: value.keyword,
+      },
+    }));
   };
   setTerm = (value) => {
     this.setState({ term: value });
@@ -56,9 +64,9 @@ class App extends Component {
             path="/achievementgoal"
             render={() => (
               <AchievementGoal
-                getCalendar={getCalendar}
                 userinfo={userinfo}
                 setTerm={setTerm}
+                handleId={handleId}
               />
             )}
           />

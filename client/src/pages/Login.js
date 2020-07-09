@@ -79,7 +79,7 @@ class Login extends Component {
           {/* <Media object data-src="../etc/youtube.jpeg/64*64" alt="" /> */}
         </Media>
         <h1 className="text-center">
-          <span className="font-weight-bold">Habitube</span>
+          <span className="font-weight-bold">HABITUBE</span>
         </h1>
         <br></br>
         <br></br>
