@@ -27,11 +27,11 @@ class Login extends Component {
     },
   };
 
-  handleInputValue = (key) => (e) => {
+  handleInputValue = key => e => {
     this.setState({ [key]: e.target.value });
   };
 
-  onChangeCheckbox = (e) => {
+  onChangeCheckbox = e => {
     this.setState({
       isIdRemeber: e.target.checked,
     });
@@ -79,7 +79,7 @@ class Login extends Component {
           {/* <Media object data-src="../etc/youtube.jpeg/64*64" alt="" /> */}
         </Media>
         <h1 className="text-center">
-          <span className="font-weight-bold">Habitube</span>
+          <span className="font-weight-bold">HABITUBE</span>
         </h1>
         <br></br>
         <br></br>
@@ -91,7 +91,7 @@ class Login extends Component {
             type="email"
             placeholder="email@email.com"
             defaultValue={this.state.emailValue}
-            onChange={(e) => {
+            onChange={e => {
               this.handleInputValue('email');
               this.validateEmail(e);
               this.setState({
@@ -121,7 +121,7 @@ class Login extends Component {
             type="password"
             placeholder="Password"
             onChange={handleInputValue('passwordValue')}
-            onChange={(e) => {
+            onChange={e => {
               this.handleInputValue('password');
               this.validatePassword(e);
               this.setState({
@@ -143,13 +143,13 @@ class Login extends Component {
                 { email: emailValue, password: passwordValue },
                 { withCredentials: true },
               )
-              .then((result) => {
+              .then(result => {
                 console.log(result.data.userInfo);
                 handleId(result.data.userInfo);
                 handleLogin();
                 this.props.history.push('/mypage');
               })
-              .catch((err) => {
+              .catch(err => {
                 console.log(err);
               });
           }}
