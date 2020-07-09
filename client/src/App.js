@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Mypage from './pages/Mypage';
 import AchievementGoal from './pages/AchievementGoal';
 import Signup from './pages/Signup';
+import Main from './pages/Main';
 import { is } from 'immutable';
 import Complete from './pages/Complete';
 import ErrorPage from './pages/ErrorPage';
@@ -23,14 +24,14 @@ class App extends Component {
     term: 0,
   };
 
-  handleId = value => {
+  handleId = (value) => {
     this.setState({ userinfo: value });
   };
-  setTerm = value => {
+  setTerm = (value) => {
     this.setState({ term: value });
   };
 
-  getCalendar = value => {
+  getCalendar = (value) => {
     this.setState({ calendar: value });
   };
   handleLogin = () => {
@@ -66,15 +67,7 @@ class App extends Component {
             render={() => <Mypage userinfo={userinfo} isLogin={isLogin} />}
           />
           <Route path="/signup" render={() => <Signup />} />
-          <Route
-            path="/"
-            render={() => {
-              if (isLogin) {
-                return <Redirect to="/mypage" />;
-              }
-              return <Redirect to="/login" />;
-            }}
-          />
+          <Route path="/" render={() => <Main />} />
         </Switch>
       </div>
     );

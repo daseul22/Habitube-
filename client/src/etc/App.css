@@ -131,6 +131,7 @@ body {
   text-align: center;
   font-weight: 800;
   line-height: 200px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 .link {
   color: #1ab35fef;
@@ -166,4 +167,59 @@ body {
   top: 19%;
   width: 70%; /* Full width */
   height: 70%;
+}
+.main {
+  background-color: #fdfdfd;
+  padding-top: 180px;
+  font-family: 'Nanum Gothic';
+  padding-bottom: 200px;
+}
+.hi {
+  color: #1ab35fef;
+  font-size: 2.3rem;
+  font-weight: 800;
+}
+.introduce-myself {
+  padding-top: 20px;
+  color: rgb(112, 112, 112);
+  padding-bottom: 110px;
+  font-size: 1rem;
+  display: block;
+}
+.main-icons {
+  font-size: 3rem;
+}
+.youtube-ani {
+  position: absolute;
+  top: 4%;
+  right: 0%;
+  width: 52%;
+}
+.line {
+  margin-bottom: 70px;
+  margin-top: 40px;
+}
+.sub {
+  padding-top: 90px;
+  padding-right: 100px;
+  color: rgb(112, 112, 112);
+  padding-bottom: 120px;
+  font-size: 1rem;
+  display: block;
+}
+.sub-title {
+  font-weight: 900;
+}
+.br {
+  margin-bottom: 12px;
+}
+.mytoast {
+  z-index: 1;
+  position: absolute;
+  right: 20%;
+  top: 3%;
+}
+.main-btn {
+  width: 30%;
+  font-size: xx-large;
 }
