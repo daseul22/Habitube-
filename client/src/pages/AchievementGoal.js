@@ -176,7 +176,9 @@ class AchievementGoal extends Component {
                 )
                 .then((result) => {
                   console.log(result);
-                  handleId({ keyword: keyword });
+                  let userKey = userinfo;
+                  userKey.keyword = keyword;
+                  handleId(userKey);
                   this.props.history.push('/mypage');
                 })
                 .catch((err) => {
