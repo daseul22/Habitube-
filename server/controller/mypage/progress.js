@@ -22,7 +22,10 @@ module.exports = {
           let total = todoboxes.length;
           todobox
             .findAll({
-              where: { isComplete: true },
+              where: {
+                usersId: userid,
+                isComplete: true,
+              },
               attributes: ['isComplete'],
             })
             .then((trueData) => {
