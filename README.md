@@ -59,8 +59,8 @@ Ref: "users"."id" < "toDoBox"."usersId"
 ```
 
 ---  
-### 스크린샷 or 데모
-여러분이 작성한 프로젝트의 시연 스크린샷 혹은 gif 파일을 첨부해서 어떤 결과물을 구현했는지 한 눈에 볼 수 있도록 해 주세요. 
+### 스크린샷 & 데모
+
   1. 소개페이지
     ![1 소개 로그인-2](https://user-images.githubusercontent.com/48423344/87116661-576d4400-c2b1-11ea-8b50-85cc46e8449b.gif)
   2. 회원가입 
@@ -74,8 +74,7 @@ Ref: "users"."id" < "toDoBox"."usersId"
   6. 다른 날짜 영상 설정하기
     ![6 영상 다른날짜 안되는기능](https://user-images.githubusercontent.com/48423344/87116871-ec703d00-c2b1-11ea-8844-1f3597eb10b9.gif)
   7. 영상 자동 재생
-    ![크기변환 7 썸네일클릭영상재생](https://user-images.githubusercontent.com/48423344/87117644-0448c080-c2b4-11ea-939c-c3d63605e5ae.gif)
-    
+    ![크기변환 7 썸네일클릭영상재생](https://user-images.githubusercontent.com/48423344/87117644-0448c080-c2b4-11ea-939c-c3d63605e5ae.gif)   
   8. 메모 입력하기
     ![8 메모기능](https://user-images.githubusercontent.com/48423344/87116882-f2661e00-c2b1-11ea-9658-deacf558b251.gif)
   9. 달성률 보여주기
@@ -128,7 +127,6 @@ Ref: "users"."id" < "toDoBox"."usersId"
 ### 기술 스택
    * front-end : React(hooks), Redux, Redux-thunk, Reactstrap, CSS, React-router
    * back-end : express, sequelize, nodejs, mysql, etc.. Youtube API, Calendar API, 구글 OAuth Api
-   * [레퍼런스](https://velog.io/@loakick/Shield-IO-%EC%82%AC%EC%9A%A9%EB%B2%95-iojyndy4pi)를 참고하여 뱃지로 표현할 수도 있어요.
 
 ---
 
