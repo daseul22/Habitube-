@@ -59,8 +59,9 @@ Ref: "users"."id" < "toDoBox"."usersId"
 ### 스크린샷 or 데모
 여러분이 작성한 프로젝트의 시연 스크린샷 혹은 gif 파일을 첨부해서 어떤 결과물을 구현했는지 한 눈에 볼 수 있도록 해 주세요. 
   1. 소개페이지
-   - 
-
+   - file:///Users/csg/Downloads/1.%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%B5%E1%86%AB-2.gif
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text](file:///Users/csg/Downloads/1.%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%B5%E1%86%AB-2.gif)
 
 
   2. 회원가입 
