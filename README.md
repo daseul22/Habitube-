@@ -59,7 +59,7 @@ Ref: "users"."id" < "toDoBox"."usersId"
 ### 스크린샷 or 데모
 여러분이 작성한 프로젝트의 시연 스크린샷 혹은 gif 파일을 첨부해서 어떤 결과물을 구현했는지 한 눈에 볼 수 있도록 해 주세요. 
   1. 소개페이지
-      - gif첨부https://hanee24.github.io/2017/12/21/how-to-upload-image-with-github-readme/
+      
   2. 회원가입 
   3. 로그인
   4. 목표 설정하기
