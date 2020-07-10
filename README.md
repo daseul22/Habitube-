@@ -3,10 +3,17 @@
 # Habitube (하비튜브)
 
 ### 팀원 소개
-  * 강준혁 : 
+  * 강준혁 : 역할(position) : back-end / Role : team-member
   * 심다슬 : 
   * 이다래 :
   * 최성규 : 
+  
+|이름|포지션|역할|
+|----|----|-------|
+|강준혁|Role : team-member|back-end|
+|심다슬|Role : team-member|back-end|
+|이다래|Role : team-member|front-end|
+|최성규|Role : team-leader|front-end|
 
 ---
 ### 서비스 설명
@@ -71,6 +78,8 @@ Ref: "users"."id" < "toDoBox"."usersId"
   6. 다른 날짜 영상 설정하기
     ![6 영상 다른날짜 안되는기능](https://user-images.githubusercontent.com/48423344/87116871-ec703d00-c2b1-11ea-8844-1f3597eb10b9.gif)
   7. 영상 자동 재생
+    ![크기변환 7 썸네일클릭영상재생](https://user-images.githubusercontent.com/48423344/87117644-0448c080-c2b4-11ea-939c-c3d63605e5ae.gif)
+    
   8. 메모 입력하기
     ![8 메모기능](https://user-images.githubusercontent.com/48423344/87116882-f2661e00-c2b1-11ea-9658-deacf558b251.gif)
   9. 달성률 보여주기
