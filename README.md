@@ -65,15 +65,22 @@ Ref: "users"."id" < "toDoBox"."usersId"
   3. 로그인
     ![3 ????????  목표페이지까지](https://user-images.githubusercontent.com/48423344/87116858-e2e6d500-c2b1-11ea-89b8-e9cdd85f3bf0.gif)
   4. 목표 설정하기
-    
+    ![4 목표설정하기](https://user-images.githubusercontent.com/48423344/87116862-e5492f00-c2b1-11ea-8ff0-6b91222ec16c.gif)
   5. 영상 설정하기
+    ![5 영상설정하기](https://user-images.githubusercontent.com/48423344/87116867-e7ab8900-c2b1-11ea-9821-91ad7f863aff.gif)
   6. 다른 날짜 영상 설정하기
+    ![6 영상 다른날짜 안되는기능](https://user-images.githubusercontent.com/48423344/87116871-ec703d00-c2b1-11ea-8844-1f3597eb10b9.gif)
   7. 영상 자동 재생
   8. 메모 입력하기
+    ![8 메모기능](https://user-images.githubusercontent.com/48423344/87116882-f2661e00-c2b1-11ea-9658-deacf558b251.gif)
   9. 달성률 보여주기
+    ![9 달성률](https://user-images.githubusercontent.com/48423344/87117117-a7003f80-c2b2-11ea-8809-12328199d5f1.gif)
   10. 이전달/다음달 탐색
+    ![10 이전달다음달](https://user-images.githubusercontent.com/48423344/87117240-02323200-c2b3-11ea-8f8c-1ea22e47e907.gif)
   11. 완료 페이지
-  
+    ![11 컴플리트](https://user-images.githubusercontent.com/48423344/87117248-065e4f80-c2b3-11ea-9292-305a8caac297.gif)
+  12. 재로그인 
+  ![12 ????? ?? 된데이터보여주기](https://user-images.githubusercontent.com/48423344/87117252-08c0a980-c2b3-11ea-97a2-b8606f3844cf.gif)
 ---  
 ### 주요 기능에 대한 안내  
   1. 소개페이지
