@@ -3,6 +3,10 @@
 # Habitube (하비튜브)
 
 ### 팀원 소개
+  * 강준혁 : 
+  *
+  *
+  *
 
 ---
 ### 서비스 설명
@@ -122,11 +126,6 @@ $ brew install fvcproductions
 $ npm install
 $ npm run start
 ```
-
-> 이 외에도 팀원 소개(ㅇㅇ), 아키텍쳐, 스키마(ㅇㅇ) 등 여러분의 프로젝트를 더 잘 어필할 수 있는 내용들을 추가해 주세요. 
-> 예시가 될 수 있는 레파지토리들을 검색해서 참고하면 좋겠습니다. 
-
-(http://img.shields.io/codeclimate/github/badges/badgerbadgerbadger.svg?style=flat-square)](https://codeclimate.com/github/badges/badgerbadgerbadger) [![Github Issues]
 
 <br/>
 <br/>
