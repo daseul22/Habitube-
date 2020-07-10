@@ -13,6 +13,33 @@
     - 홈트레이닝 : 유튜브에 있는 다양한 홈트 영상으로 홈트를 계획해서 운동 일정을 관리할수 있다.
     - 영어 듣기 : 영어로 된 영상(영화 클립, 미드, 팝 등등)을 보며 따라해 본다.
     - 레시피 따라해보기 : 집에서 편하게 고든램지의 레시피도 소환할수있다! 레시피를 따라 요리해보고 메모도 남겨본다. 
+### 
+### 데이터 베이스 스키마  
+![doe](https://user-images.githubusercontent.com/59544288/86110879-0fa42b00-bb01-11ea-8b1e-6de5ed54fe46.png)
+
+```js
+// Creating tables
+Table users as U {
+  id int [pk, increment] // auto-increment
+  email varchar
+  username varchar
+  password varchar
+  keyword varchar
+  
+}
+
+Table toDoBox as T {
+  id int [pk, increment]
+  memoTitle varchar
+  memoContent varchar
+  youtubeUrl varchar
+  isComplete boolean
+  date varchar
+  usersId int
+}
+
+Ref: "users"."id" < "toDoBox"."usersId" 
+```
   
 ### 스크린샷 or 데모
   1. 소개페이지
@@ -40,22 +67,22 @@
       - 유저가 주제를 설정하고 목표로 하는 기간과 빈도를 정한다.
       - 서버에서는 요청에대한 응답으로 달력 데이터를 만들어 보내준다.
   5. 영상 설정하기
-      -
+      - 목록에서 원하는 영상을 선택해서 시청한다.
   6. 다른 날짜 영상 설정하기
-      - 
+      - 다른 날짜에 있는 영상도 원하는 영상을 선택해서 시청한다.
   7. 영상 자동 재생
-      - 
+      - 영상을 자동으로 재생할 수 있게 한다.
   8. 메모 입력하기
-      - 
+      - 각 영상마다 메모를 입력할 수 있는 공간이 있어서, 영상을 시청하면서 동시에 메모도 입력하여 기록을 할 수 있다.
   9. 달성률 보여주기
-      -
+      - 영상을 보고나서 영상을 다 봤다는 표시를 해주면, 우측 상단에 달성률의 퍼센트가 올라간다. 
   10. 이전달/다음달 탐색
-      - 
+      - 달 마다 페이지를 나눠 놔서 각 월 마다 언제 스케줄이 있는지 확인할 수 있다. 
   11. 완료 페이지
       - 
 
 ### 설치 & 사용 방법 
-  * 링크
+  * ??
     - 
   
   
