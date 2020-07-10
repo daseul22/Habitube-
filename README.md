@@ -10,10 +10,10 @@
   
 |이름|포지션|역할|
 |----|----|-------|
-|강준혁|Role : team-member|back-end|
-|심다슬|Role : team-member|back-end|
-|이다래|Role : team-member|front-end|
-|최성규|Role : team-leader|front-end|
+|강준혁|team-member|back-end|
+|심다슬|team-member|back-end|
+|이다래|team-member|front-end|
+|최성규|team-leader|front-end|
 
 ---
 ### 서비스 설명
