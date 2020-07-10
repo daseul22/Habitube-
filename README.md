@@ -59,14 +59,13 @@ Ref: "users"."id" < "toDoBox"."usersId"
 ### 스크린샷 or 데모
 여러분이 작성한 프로젝트의 시연 스크린샷 혹은 gif 파일을 첨부해서 어떤 결과물을 구현했는지 한 눈에 볼 수 있도록 해 주세요. 
   1. 소개페이지
-   - file:///Users/csg/Downloads/1.%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%B5%E1%86%AB-2.gif
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
-![Alt Text](file:///Users/csg/Downloads/1.%E1%84%89%E1%85%A9%E1%84%80%E1%85%A2%20%E1%84%85%E1%85%A9%E1%84%80%E1%85%B3%E1%84%8B%E1%85%B5%E1%86%AB-2.gif)
-
-
+    ![1 소개 로그인-2](https://user-images.githubusercontent.com/48423344/87116661-576d4400-c2b1-11ea-8b50-85cc46e8449b.gif)
   2. 회원가입 
+    ![2 회원가입](https://user-images.githubusercontent.com/48423344/87116770-a31fed80-c2b1-11ea-9118-1d8e790b51b4.gif)
   3. 로그인
+    ![3 ????????  목표페이지까지](https://user-images.githubusercontent.com/48423344/87116858-e2e6d500-c2b1-11ea-89b8-e9cdd85f3bf0.gif)
   4. 목표 설정하기
+    
   5. 영상 설정하기
   6. 다른 날짜 영상 설정하기
   7. 영상 자동 재생
