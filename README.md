@@ -2,6 +2,9 @@
 
 # Habitube (하비튜브)
 
+### 팀원 소개
+
+
 ### 서비스 설명
 
   * 의미 : 영단어 Habit과 Youtube의 합성어로 유튜브를 통해 취미생활을 한다는 의미를 가지고 있음.
@@ -13,7 +16,12 @@
     - 홈트레이닝 : 유튜브에 있는 다양한 홈트 영상으로 홈트를 계획해서 운동 일정을 관리할수 있다.
     - 영어 듣기 : 영어로 된 영상(영화 클립, 미드, 팝 등등)을 보며 따라해 본다.
     - 레시피 따라해보기 : 집에서 편하게 고든램지의 레시피도 소환할수있다! 레시피를 따라 요리해보고 메모도 남겨본다. 
-### 
+    
+### 와이어 프레임
+![Veiwing 001](https://user-images.githubusercontent.com/61297852/86470796-205dd680-bd77-11ea-88c2-51cf5a67b481.jpeg)
+![Veiwing 002](https://user-images.githubusercontent.com/61297852/86470805-23f15d80-bd77-11ea-9ecf-11192efcde3b.jpeg)
+![Veiwing 003](https://user-images.githubusercontent.com/61297852/86470809-25228a80-bd77-11ea-916b-a6bd01a8f04d.jpeg)
+
 ### 데이터 베이스 스키마  
 ![doe](https://user-images.githubusercontent.com/59544288/86110879-0fa42b00-bb01-11ea-8b1e-6de5ed54fe46.png)
 
@@ -42,6 +50,7 @@ Ref: "users"."id" < "toDoBox"."usersId"
 ```
   
 ### 스크린샷 or 데모
+여러분이 작성한 프로젝트의 시연 스크린샷 혹은 gif 파일을 첨부해서 어떤 결과물을 구현했는지 한 눈에 볼 수 있도록 해 주세요. 
   1. 소개페이지
       - gif첨부https://hanee24.github.io/2017/12/21/how-to-upload-image-with-github-readme/
   2. 회원가입 
@@ -80,26 +89,41 @@ Ref: "users"."id" < "toDoBox"."usersId"
       - 달 마다 페이지를 나눠 놔서 각 월 마다 언제 스케줄이 있는지 확인할 수 있다. 
   11. 완료 페이지
       - 
-
-### 설치 & 사용 방법 
-  * ??
-    - 
   
   
 ### 기술 스택
    * front-end : React(hooks), Redux, Redux-thunk, Reactstrap, CSS, React-router
    * back-end : express, sequelize, nodejs, mysql, etc.. Youtube API, Calendar API, 구글 OAuth Api
+   * [레퍼런스](https://velog.io/@loakick/Shield-IO-%EC%82%AC%EC%9A%A9%EB%B2%95-iojyndy4pi)를 참고하여 뱃지로 표현할 수도 있어요.
+
+---
+
+### Clone & Setup
+
+> 이 리포지토리를 사용하여 로컬 컴퓨터에 클론하세요. 
+
+```shell
+$ git clone `https://github.com/codestates/Habitube.git`
+```
+> 업데이트와 첫 페키지를 설치를 하셔야 합니다,
+
+```shell
+$ brew update
+$ brew install fvcproductions
+```
+
+> 이제 npm 및 bower 패키지를 설치하고 실행시키십시오.
+
+```shell
+$ cd client & server
+$ npm install
+$ npm run start
+```
 
 
-- 스크린샷 or 데모 : 여러분이 작성한 프로젝트의 시연 스크린샷 혹은 gif 파일을 첨부해서 어떤 결과물을 구현했는지 한 눈에 볼 수 있도록 해 주세요. 
-- 기술 스택 : 다음 [레퍼런스](https://velog.io/@loakick/Shield-IO-%EC%82%AC%EC%9A%A9%EB%B2%95-iojyndy4pi)를 참고하여 뱃지로 표현할 수도 있어요.
-
-
-
-> 이 외에도 팀원 소개, 아키텍쳐, 스키마 등 여러분의 프로젝트를 더 잘 어필할 수 있는 내용들을 추가해 주세요. 
+> 이 외에도 팀원 소개(ㅇㅇ), 아키텍쳐, 스키마(ㅇㅇ) 등 여러분의 프로젝트를 더 잘 어필할 수 있는 내용들을 추가해 주세요. 
 > 예시가 될 수 있는 레파지토리들을 검색해서 참고하면 좋겠습니다. 
 
 <br/>
 <br/>
 
-**이 외에 프로젝트 과정에서의 기획과정, 회고, 진행 현황등 자세한 사항들은 Wiki에 기록하게 됩니다. [여기](https://github.com/codestates/project-test/wiki)를 눌러 이동해 주세요**
