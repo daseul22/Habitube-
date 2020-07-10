@@ -59,7 +59,10 @@ Ref: "users"."id" < "toDoBox"."usersId"
 ### 스크린샷 or 데모
 여러분이 작성한 프로젝트의 시연 스크린샷 혹은 gif 파일을 첨부해서 어떤 결과물을 구현했는지 한 눈에 볼 수 있도록 해 주세요. 
   1. 소개페이지
-      
+   - 
+
+
+
   2. 회원가입 
   3. 로그인
   4. 목표 설정하기
@@ -126,6 +129,9 @@ $ brew install fvcproductions
 $ npm install
 $ npm run start
 ```
+
+### AWS 링크
+https://hangouts.google.com/call/weitpO7cEXEyaBIE1w6-ACEM 
 
 <br/>
 <br/>
