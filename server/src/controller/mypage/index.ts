@@ -1,8 +1,8 @@
-import { root } from './root';
-import { getvideolist } from './getvideolist';
+import { main } from './main';
+import { videolist } from './videolist';
 import { goal } from './goal';
 import { progress } from './progress';
-import { selectvideo } from './selectvideo';
-import { todaycomplete } from './todaycomplete';
+import { todobox } from './todobox';
+import { achieve } from './achieve';
 
-export { root, getvideolist, goal, progress, selectvideo, todaycomplete };
+export { main, videolist, goal, progress, todobox, achieve };

@@ -8,8 +8,43 @@ export const AppRoutes = [
     action: userController.login.post,
   },
   {
-    path: '/root',
+    path: '/signup',
+    method: 'post',
+    action: userController.signup.post,
+  },
+  {
+    path: '/signout',
+    method: 'post',
+    action: userController.signout.post,
+  },
+  {
+    path: '/main',
     method: 'get',
-    action: mypageController.root.get,
+    action: mypageController.main.get,
+  },
+  {
+    path: '/goal',
+    method: 'post',
+    action: mypageController.goal.post,
+  },
+  {
+    path: '/videolist',
+    method: 'get',
+    action: mypageController.videolist.get,
+  },
+  {
+    path: '/todobox',
+    method: 'post',
+    action: mypageController.todobox.post,
+  },
+  {
+    path: '/achieve',
+    method: 'get',
+    action: mypageController.achieve.get,
+  },
+  {
+    path: '/progress',
+    method: 'get',
+    action: mypageController.progress.get,
   },
 ];
