@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Todobox } from './Todobox';
 
 @Entity()
 export class User {
@@ -6,11 +7,17 @@ export class User {
   id: number;
 
   @Column()
-  firstName: string;
+  email: string;
 
   @Column()
-  lastName: string;
+  username: string;
 
   @Column()
-  agee: number;
+  password: string;
+
+  @Column({ nullable: true })
+  keyword: string;
+
+  @OneToMany((type) => Todobox, (todobox) => todobox.user)
+  todoboxes: Todobox[];
 }
