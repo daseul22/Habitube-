@@ -1,7 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  BaseEntity,
+} from 'typeorm';
 import { User } from './User';
 @Entity()
-export class Todobox {
+export class Todobox extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,4 +31,20 @@ export class Todobox {
 
   @ManyToOne((type) => User, (user) => user.todoboxes)
   user: User;
+
+  static JoinByUserId(id: number): Promise<any> {
+    // join test
+    return this.createQueryBuilder('todobox')
+      .leftJoinAndSelect('todobox.user', 'user')
+      .where('todobox.userid = :id', { id: id })
+      .getMany();
+  }
+
+  static async ClearDB(): Promise<void> {
+    // db clear
+    await Todobox.clear();
+    await User.query('SET FOREIGN_KEY_CHECKS = 0');
+    await User.clear();
+    await User.query('SET FOREIGN_KEY_CHECKS = 1');
+  }
 }

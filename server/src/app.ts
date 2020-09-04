@@ -8,7 +8,6 @@ import { AppRoutes } from './routes';
 import { connectionOptions } from './ormconfig';
 import { User } from './entity/User';
 import { Todobox } from './entity/Todobox';
-import { connect } from 'net';
 
 createConnection(connectionOptions)
   .then(async (connection) => {
@@ -17,21 +16,23 @@ createConnection(connectionOptions)
     user.email = 'Timber';
     user.username = 'Saw';
     user.password = '25';
-    await connection.manager.save(user);
+    await user.save();
     console.log('Saved a new user with id: ' + user.id);
-
     console.log('Loading users from the database...');
-    const users = await connection.manager.find(User);
+    const users = await User.find();
     console.log('Loaded users: ', users);
 
     const todobox = new Todobox();
+
     todobox.memoTitle = 'hhh';
     todobox.memoContents = 'kkkkk';
     todobox.youtubeInfo = { 3: 3 };
     todobox.date = '10';
     todobox.userId = 1;
-    await connection.manager.save(todobox);
-    //====================해석 필요=======================
+    await todobox.save();
+    const join = await Todobox.JoinByUserId(2);
+    console.log('leftjoin : ', join);
+    //==================== test =======================
     const app: Application = express();
     app.use(
       cors({
