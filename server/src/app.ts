@@ -1,35 +1,38 @@
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
+import { createConnection, Repository, AfterLoad } from 'typeorm';
 import { Application, Request, Response } from 'express';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
-import { AppRoutes } from './routes';
 import { connectionOptions } from './ormconfig';
 import { User } from './entity/User';
 import { Todobox } from './entity/Todobox';
+import { AppRoutes } from './routes';
 
 createConnection(connectionOptions)
   .then(async (connection) => {
     console.log('Inserting a new user into the database...');
-    const user = new User();
-    user.email = 'Timber';
-    user.username = 'Saw';
-    user.password = '25';
-    await user.save();
-    console.log('Saved a new user with id: ' + user.id);
-    console.log('Loading users from the database...');
-    const users = await User.find();
-    console.log('Loaded users: ', users);
-
+    //let userAll = await connection.query(`select * from user`);
+    //console.log(userAll);
+    //await Todobox.ClearDB();
     const todobox = new Todobox();
-
     todobox.memoTitle = 'hhh';
     todobox.memoContents = 'kkkkk';
     todobox.youtubeInfo = { 3: 3 };
     todobox.date = '10';
-    todobox.userId = 1;
     await todobox.save();
+
+    const user = new User();
+    user.email = 'Timber';
+    user.username = 'Saw';
+    user.password = '25';
+    user.todoboxes = [todobox];
+    await user.save();
+
+    console.log('Saved a new user with id: ' + user.id);
+    console.log('Loading users from the database...');
+    const users = await User.find();
+    console.log('Loaded users: ', users);
     const join = await Todobox.JoinByUserId(2);
     console.log('leftjoin : ', join);
     //==================== test =======================

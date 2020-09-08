@@ -1,6 +1,4 @@
 import {
-  Entity,
-  BeforeInsert,
   EventSubscriber,
   EntitySubscriberInterface,
   InsertEvent,
@@ -17,9 +15,10 @@ export class UserHooks implements EntitySubscriberInterface<User> {
     let shasum: string = crypto.createHash('sha1').update(str).digest('hex');
     return shasum;
   }
-  beforeInsert(event: InsertEvent<User>) {
+  beforeInsert(event: InsertEvent<User>): Promise<any> | void {
     let beforePW = event.entity.password;
     let cryptoPW: string = this.cryptoSha1(beforePW);
     event.entity.password = cryptoPW;
   }
+  afterLoad(entity: User): Promise<any> | void {}
 }
