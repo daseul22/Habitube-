@@ -4,6 +4,8 @@ import {
   Column,
   ManyToOne,
   BaseEntity,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { User } from './User';
 @Entity()
@@ -26,10 +28,13 @@ export class Todobox extends BaseEntity {
   @Column()
   date: string;
 
-  @Column()
-  userId: number;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
 
-  @ManyToOne((type) => User, (user) => user.todoboxes)
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
+
+  @ManyToOne((type) => User, (user) => user.todoboxes, {})
   user: User;
 
   static JoinByUserId(id: number): Promise<any> {

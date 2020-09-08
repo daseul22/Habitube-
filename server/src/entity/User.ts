@@ -4,11 +4,10 @@ import {
   Column,
   OneToMany,
   BaseEntity,
-  BeforeInsert,
-  AfterInsert,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Todobox } from './Todobox';
-import * as crypto from 'crypto';
 
 @Entity()
 export class User extends BaseEntity {
@@ -27,6 +26,12 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   keyword: string;
 
-  @OneToMany((type) => Todobox, (todobox) => todobox.user)
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
+
+  @OneToMany((type) => Todobox, (todobox) => todobox.user, {})
   todoboxes: Todobox[];
 }
